@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/header.ejs %>
+  </head>
+  <body>
+    <main id="app">
+    </main>
+  </body>
+
+<script src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAMl34V3hzuwst6z5fZZvRYt4-vRlUsyWI",
+    authDomain: "the-gist-app.firebaseapp.com",
+    databaseURL: "https://the-gist-app.firebaseio.com",
+    storageBucket: "the-gist-app.appspot.com",
+    messagingSenderId: "561684833016"
+  };
+  firebase.initializeApp(config);
+</script>
+  <script src="dist/bundle.js" charset="utf-8"></script>
+</html>

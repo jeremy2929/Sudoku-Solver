@@ -1,0 +1,231 @@
+/* main.css */
+body, html {
+  background-color: rgb(41, 44, 51);
+  color: rgb(158, 165, 179);
+  font-family: helvetica;
+  height: 100%;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(187, 126, 215);
+}
+.new_gist_wrapper {
+  margin-top: .5em;
+}
+.new_gist_button:hover {
+  border: solid 1px rgb(242, 151, 102);
+  cursor: pointer;
+  transition: color 0.6s, background-color 0.6s;
+}
+
+.new_gist_clear_button {
+  background-color: rgb(34, 37, 42);
+  border: none;
+  border-bottom: solid 1px rgb(242, 151, 102);
+  color: rgb(76, 136, 255);
+  display: inline-block;
+  font-weight: bold;
+  margin-left: 1em;
+  padding: 0.5rem 1rem;
+  float: right;
+}
+
+.new_gist_button {
+  background-color: rgb(34, 37, 42);
+  border: none;
+  /*border-bottom: solid 1px rgb(242, 151, 102);*/
+  color: rgb(76, 136, 255);
+  display: inline-block;
+  font-weight: bold;
+  margin-left: 1em;
+  margin-right: 1em;
+  padding: 0.5rem 1rem;
+  float: right;
+}
+
+.new_gist_input {
+  -webkit-appearance: none;
+  margin-top: .5em;
+  background-color: rgb(34, 37, 42);
+  border: solid 2px grey;
+  color: rgb(158, 165, 179);
+  font-size: 1.2em;
+  margin-left: 1em;
+  width: 31em;
+}
+
+.new_gist_title {
+  display: inline-block;
+  margin: .5em 0;
+}
+
+.footer {
+  background-color: rgb(34, 37, 42);
+  margin-top: 1em;
+  height: 3em;
+  padding: 1em;
+  width: 100%;
+}
+
+.footer_text {
+  margin: 0 auto;
+}
+.gist_form {
+  background-color: rgb(34, 37, 42);
+  height: auto;
+  margin: .8em auto;
+  padding: 1em;
+  text-align: left;
+  width: 40em;
+}
+
+.note_list {
+  background-color: rgb(34, 37, 42);
+  height: auto;
+  margin: .8em auto;
+  padding: 0;
+  text-align: left;
+  width: 38em;
+}
+
+.note_list_wrapper {
+  background-color: rgb(34, 37, 42);
+  border: solid 2px grey;
+  height: auto;
+  margin: .8em auto;
+  padding: 0.5em;
+  text-align: left;
+  width: 39em;
+}
+
+.hidden {
+  display: none;
+}
+
+.nav_bar {
+  background-color: rgb(34, 37, 42);
+  height: 5em;
+}
+
+.nav_logo {
+  display: inline-block;
+margin: 0;
+font-size: 22px;
+}
+.nav_logo_sub {
+  color: rgb(154, 185, 195);
+  margin-top: -0.5px;
+  padding-left: 2em;
+}
+
+.nav_logo_wrapper {
+  color: rgb(53, 212, 199);
+  display: inline-block;
+  font-weight: lighter;
+  height: 4em;
+  width: 12em;
+  margin: 0.5em;
+}
+
+.nav__currentUser {
+  display: inline-block;
+  width: 20em;
+  text-align: right;
+  float: right;
+  margin-top: -1.6em;
+  margin-bottom: 0;
+  padding-right: 1em;
+}
+
+.nav__currentUserImage {
+  border: transparent;
+  border-radius: 50%;
+  position: absolute;
+  top: .8rem;
+  right: 6.5rem;
+  width: 2rem;
+}
+
+.nav__signIn, .nav__signOut {
+    background-color: rgb(34, 37, 42);
+    /*border-radius: 20px;*/
+    border: none;
+    border-bottom: solid 1px rgb(242, 151, 102);
+    color: rgb(76, 136, 255);
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    position: absolute;
+    top: .8rem;
+    right: 1rem;
+    /*transition: color 0.6s, background-color 0.6s;*/
+}
+
+.nav__signIn:hover, .nav__signOut:hover {
+    border: solid 1px rgb(242, 151, 102);
+    cursor: pointer;
+    transition: color 0.6s, background-color 0.6s;
+}
+
+.nav__signOut--hide {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+.dropdown {
+  -webkit-appearance: none;
+  background-color: rgb(34, 37, 42);
+  border: none;
+  border-radius: 0;
+  border-bottom: solid 1px rgb(242, 151, 102);
+  color: rgb(76, 136, 255);
+  display: inline-block;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5rem 1rem;
+}
+.tab_links {
+  background-color: rgb(34, 37, 42);
+  border: none;
+  /*border-bottom: solid 1px rgb(242, 151, 102);*/
+  color: rgb(153, 127, 255);
+  display: inline-block;
+  font-weight: bold;
+  margin-left: 1em;
+  padding: 0.5rem 1rem;
+}
+
+.tab_content {
+  background-color: rgb(34, 37, 42);
+  border-top: solid 1px rgb(242, 151, 102);
+  height: auto;
+  margin: 0 auto;
+  padding: 1em;
+  text-align: left;
+  width: 40em;
+}
+.tab_wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.5em;
+  height: auto;
+  width: 42em;
+}
+.tab_links:hover {
+  border-top: solid 1px rgb(242, 151, 102);
+  border-left: solid 1px rgb(242, 151, 102);
+  border-right: solid 1px rgb(242, 151, 102);
+  cursor: pointer;
+  transition: color 0.6s, background-color 0.6s;
+}
+.tab_header {
+  margin: 0;
+}
+.page_wrap {
+  min-height: 37em;
+}
