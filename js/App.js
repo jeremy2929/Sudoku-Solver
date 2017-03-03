@@ -1,13 +1,15 @@
 import React from "react"
 import { Link } from "react-router"
-import Box from "./Box"
+import Header from "./Header"
+import Footer from "./Footer"
 
 export default React.createClass({
   render() {
-    return(
+    return (
       <section>
-        <h1>This is a grid kid</h1>
-        <h2>{ Box }</h2>
+        <Header />
+        { this.props.children }
+        <Footer />
       </section>
     )
   }
