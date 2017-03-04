@@ -7,7 +7,7 @@ export default React.createClass({
     return(
       <section>
         <h1>This is a grid kid</h1>
-        <h2>{ Box }</h2>
+        <Box />
       </section>
     )
   }
