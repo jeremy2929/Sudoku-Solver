@@ -9,4 +9,4 @@ have the app solve the puzzle.
 1. Clone the repo from GitHub repository
 2. npm install
 3. npm start
-4. auto start the local 5000?
+4. app and browser can be opened by typing 'npm run gojo' at BASH prompt
