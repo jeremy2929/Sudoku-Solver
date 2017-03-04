@@ -1,0 +1,19 @@
+a {
+  color: white;
+  text-decoration: none;
+}
+body {
+  font-family: helvetica;
+  margin: 0;
+}
+ul {
+  padding: 1em;
+  list-style: none;
+}
+/*@FIXME: Need to add a min-height to grid component to keep footer at bottom of page*/
+.footer_wrapper {
+  background-color: black;
+  color: white;
+  height: 5.1em;
+  width: 100%;
+}
