@@ -4,7 +4,7 @@ import { Link } from "react-router"
 export default React.createClass({
   render() {
     return(
-      <section className="headerBar">
+      <header className="headerBar">
         <div className="headerGraphicsLeft">
           <img src="/styles/grid1.png"></img>
         </div>
@@ -12,7 +12,7 @@ export default React.createClass({
           <div className="headerGraphicsRight">
             <img src="/styles/grid2.png"></img>
           </div>
-      </section>
+      </header>
     )
   }
 })
