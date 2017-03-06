@@ -22,6 +22,10 @@ ul {
   box-sizing: border-box;
 }
 
+.grid_wrapper {
+  min-height: 35em;
+}
+
 .headerBar{
   /*background-color: lightgrey;*/
   border: solid 2px;

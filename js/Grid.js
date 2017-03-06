@@ -5,7 +5,7 @@ import Box from "./Box"
 export default React.createClass({
   render() {
     return(
-      <section>
+      <section className="grid_wrapper">
         <h1>This is a grid kid</h1>
         <Box />
       </section>
