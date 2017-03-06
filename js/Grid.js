@@ -5,7 +5,7 @@ import Box from "./Box"
 export default React.createClass({
   getInitialState() {
     return {
-      boxRow: [[1,2,3],[4,5,6],[7,8,9]]
+      boxRow: [[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9]]
     }
   },
   render() {
@@ -21,7 +21,7 @@ return (
                   {
                     rows.map((cols, j)=>{
                       return (
-                        <td key={j}>< Box/></td>
+                        <td key={j}><Box i={i} j={j}/></td>
                       )
                     })
                   }
