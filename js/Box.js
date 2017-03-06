@@ -1,10 +1,12 @@
 import React from "react"
 import { Link } from "react-router"
+import Grid from "./Grid"
 
 export default React.createClass({
   render() {
     return(
-      <h1>This is a box</h1>
+      <p>BOX</p>
+
     )
   }
 })

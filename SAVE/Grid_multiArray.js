@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "react-router"
 import Box from "./Box"
+
 var userButtons = [
     {
         id: 1,
@@ -39,14 +40,14 @@ var userButtons = [
  //<Box />
 
 export default React.createClass({
-
   render() {
+    console.log(boxRow);
 return (
 
     <section>
       <h1>This is a grid kid</h1>
         <table>
-          <p onClick={this.onClickTest}>t</p>          {
+        {
             userButtons.map(function(ub) {
 
                 var buttons = ub.buttons.map(function(button) {
@@ -54,18 +55,16 @@ return (
                         <td >x{button.value}</td>
                     )
                 });
-
                 return (
                     <tr>
                         <td >{ub.firstName}</td>
                         <td>{ub.lastName}</td>
                         {buttons}
-
-
                     </tr>
                 )
             })
         }
+      }
     </table>
     </section>
 
