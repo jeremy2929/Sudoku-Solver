@@ -9,28 +9,29 @@ export default React.createClass({
     }
   },
   render() {
-return (
-    <section className="grid_wrapper">
-      <h1>This is a grid kid</h1>
-      <table >
-        <tbody>
-          {
-            this.state.boxRow.map(function(rows, i) {
-              return (
-                <tr key={i}>
-                  {
-                    rows.map((cols, j)=>{
-                      return (
-                        <td key={j}>< Box/></td>
-                      )
-                    })
-                  }
-                </tr>
-              )
-            })
-          }
-        </tbody>
-      </table>
-    </section>
-  )}
+    return (
+      <section className="grid_wrapper">
+        <h1>This is a grid kid</h1>
+        <table >
+          <tbody>
+            {
+              this.state.boxRow.map(function(rows, i) {
+                return (
+                  <tr key={i}>
+                    {
+                      rows.map((cols, j)=>{
+                        return (
+                          <td key={j}><Box/></td>
+                        )
+                      })
+                    }
+                  </tr>
+                )
+              })
+            }
+          </tbody>
+        </table>
+      </section>
+    )
+  }
 })
