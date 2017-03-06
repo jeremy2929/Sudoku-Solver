@@ -5,7 +5,9 @@ import Grid from "./Grid"
 export default React.createClass({
   render() {
     return(
-      <p>BOX</p>
+      <input className="box_wrapper" type="number">
+
+      </input>
 
     )
   }
