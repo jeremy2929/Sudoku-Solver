@@ -8,7 +8,7 @@ export default React.createClass({
     return {
 
       boxRow: [[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9],[1,2,3,4,5,6,7,8,9]],
-      boxValue: [[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,]]
+      boxValue: [[]],[[]],[[]],[[]],[[]],[[]],[[]],[[]],[[]]
     }
   },
   updateBoard(i, j, boxContent) {
@@ -17,7 +17,6 @@ export default React.createClass({
   render() {
 return (
     <section className="grid_wrapper">
-      <h1>This is a grid kid</h1>
       <table >
         <tbody>
           {

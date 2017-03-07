@@ -9,9 +9,11 @@ export default React.createClass({
           <img src="/styles/grid1.png"></img>
         </div>
         <h1 className="mainTitle">The Sudoku Puzzle Solver</h1>
+        
           <div className="headerGraphicsRight">
             <img src="/styles/grid2.png"></img>
           </div>
+
       </header>
     )
   }
