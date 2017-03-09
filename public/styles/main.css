@@ -68,11 +68,13 @@ ul{
   width: 100%;
 }
 
-
 .grid_wrapper {
   min-height: 35em;
   margin: 0 auto;
   margin-top: 1em;
   width: 29em;
+}
+
+.solve_button{
 
 }
