@@ -12,6 +12,12 @@ body{
   margin: 0;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
 ul{
   padding: 1em;
   list-style: none;
@@ -56,7 +62,6 @@ ul{
   font-size: 1.5em;
   height: 2em;
   margin: 0;
-  padding-left: 0.6em;
   text-align: center;
   width: 2em;
 }
