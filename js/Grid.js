@@ -1,14 +1,7 @@
 import React from "react"
 import {Link} from "react-router"
 import Box from "./Box"
-var limit = 25
-console.log("incrementing C");
-var solveC = 0
-var solveR = 0
-var valueStart = 1
-var debug = 0
-var debug1 = 0
-var debug2 = 0
+
 export default React.createClass({
   getInitialState() {
     return {
@@ -79,26 +72,9 @@ export default React.createClass({
     }
     return flag
   },
-
   onSolveClick(){
     // begin 2 loops, one for Row, one for Column for each square
-  //  var debug = 0
-
-//    this code is for one click at a time
-    // if (solveC > 8){
-    //   solveR++
-    //   solveC = 0
-    //   if (solveR > 8){
-    //     console.log(this.state.boxValue);
-    //     solveC = 9
-    //   }
-    // }
-
-    // This code for running on its own, not one click at a time
-
-
-      var valueStart = 1
-
+    var valueStart = 1
     var solveR = 0
     while(solveR < 9){
       var solveC = 0
@@ -106,25 +82,18 @@ export default React.createClass({
 
         // begin loop of values 1 thru 9 to try each square
         for (var solveV = valueStart; solveV < 10; solveV++){
-
-          debug2++
           // setting flag- will change to false if any tests fail
           var flag = true
           var backupFlag = true
-
           // validate only trying squares that are empty
           if(this.state.boxValueOriginal[solveR][solveC] === undefined) {
-              // if (solveR === 5 && solveC === 1){console.log("5,1 = ",Number(this.state.boxValue[5][1][0])," trying ",solveV," at ",solveR,solveC);}
+
             //*******  Column Test  *******
             flag = this.testColumns(flag,solveR,solveV)
+
             //*******  Row Test  *******
-            if (solveR === 5 && solveC === 1 && solveV === 2){
-              console.log("5,1 trying 2, flag=",flag);
-            }
             flag = this.testRows(flag,solveC,solveV)
-            if (solveR === 5 && solveC === 1 && solveV === 2){
-              console.log("5,1 trying 2, flag=",flag);
-            }
+
             // determine which local 3x3 square this square is located (0 thru 8)
             var localIndex = parseInt(Number(this.state.boxId[solveR][solveC]) / 9)
             // calling function to build local 3x3 array to be tested
@@ -132,9 +101,7 @@ export default React.createClass({
 
             //*******  3x3 Test  *******
             flag = this.test3x3(flag,solveV)
-            if (solveR === 5 && solveC === 1 && solveV === 2){
-              console.log("5,1 trying 2, flag=",flag);
-            }
+
             // if all 3 tests pass, insert the value defined by the solveV loop as
             //      the first character of string at boxValue[][][0]
             // also storing local 3x3 square ID as second character in string
@@ -142,28 +109,6 @@ export default React.createClass({
             //      testing.
             if (flag === true){
               this.state.boxValue[solveR][solveC] = solveV.toString() + localIndex.toString()
-              if (Number(this.state.boxValue[4][0][0]) === 9 && Number(this.state.boxValue[4][1][0]) === 3 && Number(this.state.boxValue[4][2][0]) === 8 && Number(this.state.boxValue[4][3][0]) === 6 && Number(this.state.boxValue[4][4][0]) === 4 && Number(this.state.boxValue[4][5][0]) === 1 && Number(this.state.boxValue[4][6][0]) === 7 && Number(this.state.boxValue[4][7][0]) === 5 && Number(this.state.boxValue[4][8][0]) === 2){
-              console.log("R and C now=",solveR,solveC,Number(this.state.boxValue[solveR][solveC][0]))
-              console.log("******************");
-
-              for (var x = 0; x < 9; x++){
-                console.log(Number(this.state.boxValue[x][0]),Number(this.state.boxValue[x][1]),Number(this.state.boxValue[x][2]),Number(this.state.boxValue[x][3]),Number(this.state.boxValue[x][4]),Number(this.state.boxValue[x][5]),Number(this.state.boxValue[x][6]),Number(this.state.boxValue[x][7]),Number(this.state.boxValue[x][8]))
-              // console.log(Number(this.state.boxValue[x][0][0]),Number(this.state.boxValue[x][1][0]),Number(this.state.boxValue[x][2][0]),Number(this.state.boxValue[x][3][0]),Number(this.state.boxValue[x][4][0]),Number(this.state.boxValue[x][5][0]),Number(this.state.boxValue[x][6][0]),Number(this.state.boxValue[x][7][0]),Number(this.state.boxValue[x][8][0]))
-
-            }
-            console.log("******************");
-
-              // console.log("box 4,0",Number(this.state.boxValue[4][0][0]));
-              // console.log("box 4,1",Number(this.state.boxValue[4][1][0]));
-              // console.log("box 4,2",Number(this.state.boxValue[4][2][0]));
-              // console.log("box 4,3",Number(this.state.boxValue[4][3][0]));
-              // console.log("box 4,4",Number(this.state.boxValue[4][4][0]));
-              // console.log("box 4,5",Number(this.state.boxValue[4][5][0]));
-              // console.log("box 4,6",Number(this.state.boxValue[4][6][0]));
-              // console.log("box 4,7",Number(this.state.boxValue[4][7][0]));
-              // console.log("box 4,8",Number(this.state.boxValue[4][8][0]));
-            }
-
               backupFlag = false
               valueStart = 1
               solveV = 9
@@ -172,18 +117,13 @@ export default React.createClass({
                 solveR++
                 solveC = 0
                 if (solveR > 8){
-                  console.log("number of forward loops=",debug);
-                  console.log("number of backward loops=",debug1);
-                  console.log("number of loops a value is tried in a box=",debug2);
                   solveC = 9
-
                 }
               }
             } else {
               backupFlag = true
             }
           } else {
-          //  console.log("user defined at ",solveR,solveC,"=",this.state.boxValueOriginal[solveR][solveC]);
             backupFlag = false
             valueStart = 1
             solveV = 9
@@ -192,65 +132,38 @@ export default React.createClass({
               solveR++
               solveC = 0
               if (solveR > 8){
-                console.log("number of forward loops=",debug);
-                console.log("number of backward loops=",debug1);
-                console.log("number of loops a value is tried in a box=",debug2);
                 solveC = 9
               }
             }
           }
         }
-
-        if (solveR === 0 && solveC === 0){console.log(solveR,solveC,this.state.boxValue[solveR][solveC][0]);}
         //  Begin of Backup Code
-          while(backupFlag){
-
-            backupFlag = false
-            solveC = solveC - 1
-            if (solveC < 0){
-              solveR = solveR - 1
-              solveC = 8
-              if (solveR < 0){
-                solveR = 0
-                solveC = 0
-                backupFlag = false
-              }
+        while(backupFlag){
+          backupFlag = false
+          solveC = solveC - 1
+          if (solveC < 0){
+            solveR = solveR - 1
+            solveC = 8
+            if (solveR < 0){
+              solveR = 0
+              solveC = 0
+              backupFlag = false
             }
-            if(this.state.boxValueOriginal[solveR][solveC] != undefined) {
-              backupFlag = true
-            }
-            if (backupFlag === false){
-              valueStart = Number(this.state.boxValue[solveR][solveC][0]) + 1
-                if (solveR === 0 && solveC === 0){console.log("0,0 valueStart=",valueStart);}
-                if (solveR === 0 && solveC === 0 && valueStart === 9){console.log("valueStart=",valueStart)
-              console.log(test);}
-
-              if (backupFlag === false){this.state.boxValue[solveR][solveC] = "0"}
-            }
-            if(valueStart > 9){
-              backupFlag = true
-            }
-debug1++
           }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-debug++
-
-}}
-      console.log(this.state.boxValue);
-      this.setState(this.state.boxValue)
+          if(this.state.boxValueOriginal[solveR][solveC] != undefined) {
+            backupFlag = true
+          }
+          if (backupFlag === false){
+            valueStart = Number(this.state.boxValue[solveR][solveC][0]) + 1
+            if (backupFlag === false){this.state.boxValue[solveR][solveC] = "0"}
+          }
+          if(valueStart > 9){
+            backupFlag = true
+          }
+        }
+      }
+    }
+    this.setState(this.state.boxValue)
   },
   render() {
 return (
@@ -279,70 +192,3 @@ return (
     </section>
   )}
 })
-
-
-//   if (solveR === 0){    console.log("Entering backup code");}
-//     debug++
-//   if (solveR === 0){   console.log("+++++++++++",solveR,solveC);}
-// if(solveR ===0 && solveC === 0){console.log(Number(this.state.boxValue[solveR][solveC][0]));}
-//     if(this.state.boxValueOriginal[solveR][solveC] === undefined){
-//       this.state.boxValue[solveR][solveC] = "*"
-//     if (solveR === 0){  console.log("no solution so assigning * before backing up");}
-//     }
-//     backupFlag = false
-//     solveC = solveC - 1
-//     if (solveC < 0){
-//   if (solveR === 0){      console.log("C less than zero so backing up one Row");}
-//       solveR = solveR - 1
-//       solveC = 8
-//       if (solveR < 0){
-//
-//         solveR = 0
-//         solveC = 0
-//         if (solveR === 0){    console.log("R less than zero so setting Row and Col to both 0,0")
-//           console.log("value of 0,0=",Number(this.state.boxValue[solveR][solveC][0]))
-//         }
-//         valueStart = Number(this.state.boxValue[solveR][solveC][0])
-//         this.state.boxValue[solveR][solveC] = "*"
-//         console.log("***********************at 0,0. valueStart=",valueStart);
-//         backupFlag = false
-//       }
-//     }
-//     valueStart = Number(this.state.boxValue[solveR][solveC][0])
-//     if (solveR === 0 && solveC === 0){console.log("*************at 0 0 value = ",valueStart);}
-//   if (solveR === 0){    console.log("ValueStart assigned=",valueStart);}
-//     while(this.state.boxValueOriginal[solveR][solveC] != undefined){
-//     if (solveR === 0){    console.log("Backed up to a user defined so backing up again");}
-//       solveC = solveC - 1
-//       if (solveC < 0){
-//       if (solveR === 0){    console.log("C less than zero so backing up one Row inside user defined While");}
-//         solveR = solveR - 1
-//         solveC = 8
-//         if (solveR < 0){
-//         if (solveR === 0){    console.log("R less than zero so setting Row and Col to both 0,0 inside user defined While");}
-//           solveR = 0
-//           solveC = 0
-//           valueStart = Number(this.state.boxValue[solveR][solveC][0])
-//           this.state.boxValue[solveR][solveC] = "*"
-//           console.log("at 0,0. valueStart=",valueStart);
-//         if (solveR === 0 && solveC === 0){console.log("at 0 0 value = ",valueStart);}
-//         if (solveR === 0){    console.log("ValueStart1 assigned inside user defined While=",valueStart);}
-//           backupFlag = false
-//         }
-//       }
-//       valueStart = Number(this.state.boxValue[solveR][solveC][0])
-//
-//       if (solveR === 0 && solveC === 0){  this.state.boxValue[solveR][solveC] = "*"}
-//       if (solveR === 0 && solveC === 0){console.log("at 0 0 value = ",valueStart);}
-//     if (solveR === 0){    console.log("ValueStart2 assigned inside user defined While=",valueStart);}
-//     }
-//     if (valueStart === 9){
-//     if (solveR === 0){    console.log("valueStart = 9 so assigning * and setting backupFlag = true");}
-//       backupFlag = true
-//       this.state.boxValue[solveR][solveC] = "*"
-//     }
-//     if (solveR === 0){  console.log("End of backup code");}
-//     if (isNaN(valueStart)){console.log(test);}
-//   }
-//   if (solveR === 0 && solveC === 0){valueStart = valueStart + 1}
-//  End of Backup Code
