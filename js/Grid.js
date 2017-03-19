@@ -13,7 +13,8 @@ export default React.createClass({
       // this array will contain map of all values of the 81 squares
       boxValue: [[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "]],
       // this array contains unique identifier for each of the 81 squares
-      boxId: [["00","01","02","09","10","11","18","19","20"],["03","04","05","12","13","14","21","22","23"],["06","07","08","15","16","17","24","25","26"],["27","28","29","36","37","38","45","46","47"],["30","31","32","39","40","41","48","49","50"],["33","34","35","42","43","44","51","52","53"],["54","55","56","63","64","65","72","73","74"],["57","58","59","66","67","68","75","76","77"],["60","61","62","69","70","71","78","79","80"]]
+      boxId: [["00","01","02","09","10","11","18","19","20"],
+              ["03","04","05","12","13","14","21","22","23"],["06","07","08","15","16","17","24","25","26"],["27","28","29","36","37","38","45","46","47"],["30","31","32","39","40","41","48","49","50"],["33","34","35","42","43","44","51","52","53"],["54","55","56","63","64","65","72","73","74"],["57","58","59","66","67","68","75","76","77"],["60","61","62","69","70","71","78","79","80"]]
     }
   },
   updateBoard(i, j, boxContent) {
@@ -73,15 +74,19 @@ export default React.createClass({
   },
   onSolveClick(){
     // begin 2 loops, one for Row, one for Column for each square
-    for (var solveR = 0; solveR < 9; solveR++) {
-      for (var solveC = 0; solveC < 9; solveC++) {
+    var valueStart = 1
+    var solveR = 0
+    while(solveR < 9){
+      var solveC = 0
+      while(solveC < 9){
 
         // begin loop of values 1 thru 9 to try each square
-        for (var solveV = 1; solveV < 10; solveV++){
+        for (var solveV = valueStart; solveV < 10; solveV++){
           // setting flag- will change to false if any tests fail
           var flag = true
+          var backupFlag = true
           // validate only trying squares that are empty
-          if(this.state.boxValue[solveR][solveC][0] === " ") {
+          if(this.state.boxValueOriginal[solveR][solveC] === undefined) {
 
             //*******  Column Test  *******
             flag = this.testColumns(flag,solveR,solveV)
@@ -104,12 +109,61 @@ export default React.createClass({
             //      testing.
             if (flag === true){
               this.state.boxValue[solveR][solveC] = solveV.toString() + localIndex.toString()
+              backupFlag = false
+              valueStart = 1
+              solveV = 9
+              solveC++
+              if (solveC > 8){
+                solveR++
+                solveC = 0
+                if (solveR > 8){
+                  solveC = 9
+                }
+              }
+            } else {
+              backupFlag = true
+            }
+          } else {
+            backupFlag = false
+            valueStart = 1
+            solveV = 9
+            solveC++
+            if (solveC > 8){
+              solveR++
+              solveC = 0
+              if (solveR > 8){
+                solveC = 9
+              }
             }
           }
         }
+        //  Begin of Backup Code
+        while(backupFlag){
+          backupFlag = false
+          solveC = solveC - 1
+          if (solveC < 0){
+            solveR = solveR - 1
+            solveC = 8
+            if (solveR < 0){
+              solveR = 0
+              solveC = 0
+              backupFlag = false
+            }
+          }
+          if(this.state.boxValueOriginal[solveR][solveC] != undefined) {
+            backupFlag = true
+          }
+          if (backupFlag === false){
+            valueStart = Number(this.state.boxValue[solveR][solveC][0]) + 1
+            if (backupFlag === false){this.state.boxValue[solveR][solveC] = "0"}
+          }
+          if(valueStart > 9){
+            backupFlag = true
+          }
+        }
+        // End of backup code
       }
     }
-    // set state of boxValue to generate new render
     this.setState(this.state.boxValue)
   },
   render() {
@@ -134,7 +188,7 @@ return (
           }
         </tbody>
       </table>
-      <button className="solve_button" onClick={this.onSolveClick}>Solve</button>
+    <button className="solve_button" onClick={this.onSolveClick}>Solve</button>
     </section>
   )}
 })
