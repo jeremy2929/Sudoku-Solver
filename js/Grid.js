@@ -83,34 +83,35 @@ export default React.createClass({
     // assign the array built to the local 3x3 array that is already in state
     this.state.localArray = tempArray
   },
-  testColumns(flag,solveR,solveV){
+  testColumns(solveR,solveV){
     // test all other squares in column for value to be inserted
     for (var testC = 0; testC < 9; testC++){
       // value of square is stored as first character of string [0]
       if (this.state.boxValue[solveR][testC][0] === solveV.toString()){
-        flag = false
+        return false
       }
     }
-    return flag
+    return true
   },
-  testRows(flag,solveC,solveV) {
+  testRows(solveC,solveV) {
     // test all other squares in row for value to be inserted
     for (var testR = 0; testR < 9; testR++){
       // value of square is stored as first character of string [0]
       if (this.state.boxValue[testR][solveC][0] === solveV.toString()){
-        flag = false
+        return false
       }
     }
-    return flag
+    return true
   },
-  test3x3(flag,solveV){
+  test3x3(solveV,solveR,solveC){
+
     // test all squares of local 3x3 square for value to be inserted
     for (var testL = 0; testL < 9; testL++){
       if (this.state.localArray[testL] === solveV.toString()){
-        flag = false
+        return false
       }
     }
-    return flag
+    return true
   },
   onSolveClick(){
     // begin 2 loops, one for Row, one for Column for each square
@@ -126,31 +127,20 @@ export default React.createClass({
         for (var solveV = valueStart; solveV < 10; solveV++){
           counterValue++
           // setting flag- will change to false if any tests fail
-          var flag = true
           var backupFlag = true
           // validate only trying squares that are empty
           if(this.state.boxValueOriginal[solveR][solveC] === undefined) {
-
-            //*******  Column Test  *******
-            flag = this.testColumns(flag,solveR,solveV)
-
-            //*******  Row Test  *******
-            flag = this.testRows(flag,solveC,solveV)
-
-            // determine which local 3x3 square this square is located (0 thru 8)
+            // determine mathematically in which local 3x3 square this square is located (0 thru 8)
+            //   by using the unique box ID
             var localIndex = parseInt(Number(this.state.boxId[solveR][solveC]) / 9)
             // calling function to build local 3x3 array to be tested
             this.buildLocalArray(localIndex)
-
-            //*******  3x3 Test  *******
-            flag = this.test3x3(flag,solveV)
-
             // if all 3 tests pass, insert the value defined by the solveV loop as
             //      the first character of string at boxValue[][][0]
             // also storing local 3x3 square ID as second character in string
             //      at boxValue[][][1].  This ID is used to build local 3x3 array for
             //      testing.
-            if (flag === true){
+            if (this.testColumns(solveR,solveV) && this.testRows(solveC,solveV) && this.test3x3(solveV)){
               // all tests pass so insert this value
               this.state.boxValue[solveR][solveC] = solveV.toString() + localIndex.toString()
               // no need to back up in puzzle to change previous values
@@ -168,12 +158,6 @@ export default React.createClass({
                 // if Row exceeds 8, puzzle is solved. Set Column to max to end loop
                 if (solveR > 8){
                   solveC = 9
-                  this.setState(this.state.boxValue)
-                  for (var r = 0; r < 9; r++){
-                    for (var c = 0; c < 9; c++){
-                      console.log(this.state.boxValue[r][c][1]);
-                    }
-                  }
                   console.log("counterBox=",counterBox,"counterValue=",counterValue);
                 }
               }
