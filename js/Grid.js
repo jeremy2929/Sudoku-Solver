@@ -211,30 +211,35 @@ export default React.createClass({
     }
     this.setState(this.state.boxValue)
   },
+  onResetClick(){
+    window.location.reload()
+  },
   render() {
-
-    return (
-      <section className="grid_wrapper">
-        <table >
-          <tbody>
-            {
-              this.state.boxValue.map((rows, i)=> {
-                return (
-                  <tr className="boxArea" key={i}>
-                    {
-                      rows.map((cols, j)=>{
-                        return (
-                          <td key={j}><Box i={i} j={j} updateBoard={this.updateBoard} boxValue={this.state.boxValue}/></td>
-                        )
-                      })
-                    }
-                  </tr>
-                )
-              })
-            }
-          </tbody>
-        </table>
-        <button className="solve_button" onClick={this.onSolveClick}>Solve</button>
-      </section>
-    )}
-  })
+return (
+    <section className="grid_wrapper">
+      <table >
+        <tbody>
+          {
+            this.state.boxValue.map((rows, i)=> {
+              return (
+                <tr key={i}>
+                  {
+                    rows.map((cols, j)=>{
+                      return (
+                        <td key={j}><Box i={i} j={j} updateBoard={this.updateBoard} boxValue={this.state.boxValue}/></td>
+                      )
+                    })
+                  }
+                </tr>
+              )
+            })
+          }
+        </tbody>
+      </table>
+    <button className="solve_button" onClick={this.onSolveClick}>Solve</button>
+    <button onClick={this.onResetClick}>
+      Reset
+    </button>
+    </section>
+  )}
+})
