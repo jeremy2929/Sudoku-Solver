@@ -1,8 +1,12 @@
 import React from "react"
 import {Link} from "react-router"
 import Box from "./Box"
-var debug = 0
-var debug2 = 0
+
+// these counters are for counting two loops, only for counting how many loops to solve puzzle
+// counterC counts how many times the code moves forward a box
+// counterV counts how many times a value is tried in a box
+var counterBox = 0
+var counterValue = 0
 export default React.createClass({
   getInitialState() {
     return {
@@ -81,11 +85,12 @@ export default React.createClass({
     while(solveR < 9){
       var solveC = 0
       while(solveC < 9){
-        debug++
+        //
+        counterBox++
 
         // begin loop of values 1 thru 9 to try each square
         for (var solveV = valueStart; solveV < 10; solveV++){
-          debug2++
+          counterValue++
           // setting flag- will change to false if any tests fail
           var flag = true
           var backupFlag = true
@@ -112,22 +117,31 @@ export default React.createClass({
             //      at boxValue[][][1].  This ID is used to build local 3x3 array for
             //      testing.
             if (flag === true){
+              // all tests pass so insert this value
               this.state.boxValue[solveR][solveC] = solveV.toString() + localIndex.toString()
+              // no need to back up in puzzle to change previous values
               backupFlag = false
+              // reset valueStart for next box
               valueStart = 1
+              // end this loop of solveV by assigning max value of loop
               solveV = 9
+              // move to next box
               solveC++
+              // if column exceeds 8, move to next row and reset column
               if (solveC > 8){
                 solveR++
                 solveC = 0
+                // if Row exceeds 8, puzzle is solved. Set Column to max to end loop
                 if (solveR > 8){
                   solveC = 9
-                  console.log("debug=",debug,"debug2=",debug2);
+                  console.log("counterBox=",counterBox,"counterValue=",counterValue);
                 }
               }
             } else {
+              // no solution found so need to enter backup code
               backupFlag = true
             }
+            // if this box has value in boxValueOriginal array, then skip entire box
           } else {
             backupFlag = false
             valueStart = 1
@@ -155,6 +169,7 @@ export default React.createClass({
               backupFlag = false
             }
           }
+          // if this box has value in boxValueOriginal array, then skip entire box
           if(this.state.boxValueOriginal[solveR][solveC] != undefined) {
             backupFlag = true
           }
