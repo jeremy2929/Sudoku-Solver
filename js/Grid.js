@@ -2,6 +2,11 @@ import React from "react"
 import {Link} from "react-router"
 import Box from "./Box"
 
+// these counters are for counting two loops, only for counting how many loops to solve puzzle
+// counterC counts how many times the code moves forward a box
+// counterV counts how many times a value is tried in a box
+var counterBox = 0
+var counterValue = 0
 export default React.createClass({
   getInitialState() {
     return {
@@ -9,9 +14,9 @@ export default React.createClass({
       localArray: [],
       // this array stores only the given values from the user before solving begins
       // this is needed to insure these values never change
-      boxValueOriginal: [[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,]],
+         boxValueOriginal: [[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,]],
       // this array will contain map of all values of the 81 squares
-      boxValue: [[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "]],
+          boxValue: [[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "]],
       // this array contains unique identifier for each of the 81 squares
       boxId: [["00","01","02","09","10","11","18","19","20"],
               ["03","04","05","12","13","14","21","22","23"],["06","07","08","15","16","17","24","25","26"],["27","28","29","36","37","38","45","46","47"],["30","31","32","39","40","41","48","49","50"],["33","34","35","42","43","44","51","52","53"],["54","55","56","63","64","65","72","73","74"],["57","58","59","66","67","68","75","76","77"],["60","61","62","69","70","71","78","79","80"]]
@@ -23,9 +28,10 @@ export default React.createClass({
     var localIndex = parseInt(Number(this.state.boxId[i][j]) / 9)
     // add value given by user to box as first character in string
     // and add value of local 3x3 square as second character in string
-    this.state.boxValue[i][j] = boxContent + localIndex.toString()
+    this.state.boxValue[i][j] = boxContent.toString() + localIndex.toString()
     // copy same user values in this array to preserve them
-    this.state.boxValueOriginal[i][j] = boxContent
+    this.state.boxValueOriginal[i][j] = boxContent.toString() + localIndex.toString()
+
   },
   buildLocalArray(localIndex){
     // defining an empty array to add values contained in local 3x3 square
@@ -79,9 +85,12 @@ export default React.createClass({
     while(solveR < 9){
       var solveC = 0
       while(solveC < 9){
+        //
+        counterBox++
 
         // begin loop of values 1 thru 9 to try each square
         for (var solveV = valueStart; solveV < 10; solveV++){
+          counterValue++
           // setting flag- will change to false if any tests fail
           var flag = true
           var backupFlag = true
@@ -108,21 +117,31 @@ export default React.createClass({
             //      at boxValue[][][1].  This ID is used to build local 3x3 array for
             //      testing.
             if (flag === true){
+              // all tests pass so insert this value
               this.state.boxValue[solveR][solveC] = solveV.toString() + localIndex.toString()
+              // no need to back up in puzzle to change previous values
               backupFlag = false
+              // reset valueStart for next box
               valueStart = 1
+              // end this loop of solveV by assigning max value of loop
               solveV = 9
+              // move to next box
               solveC++
+              // if column exceeds 8, move to next row and reset column
               if (solveC > 8){
                 solveR++
                 solveC = 0
+                // if Row exceeds 8, puzzle is solved. Set Column to max to end loop
                 if (solveR > 8){
                   solveC = 9
+                  console.log("counterBox=",counterBox,"counterValue=",counterValue);
                 }
               }
             } else {
+              // no solution found so need to enter backup code
               backupFlag = true
             }
+            // if this box has value in boxValueOriginal array, then skip entire box
           } else {
             backupFlag = false
             valueStart = 1
@@ -150,6 +169,7 @@ export default React.createClass({
               backupFlag = false
             }
           }
+          // if this box has value in boxValueOriginal array, then skip entire box
           if(this.state.boxValueOriginal[solveR][solveC] != undefined) {
             backupFlag = true
           }
@@ -165,6 +185,9 @@ export default React.createClass({
       }
     }
     this.setState(this.state.boxValue)
+  },
+  onResetClick(){
+    window.location.reload()
   },
   render() {
 return (
@@ -189,6 +212,9 @@ return (
         </tbody>
       </table>
     <button className="solve_button" onClick={this.onSolveClick}>Solve</button>
+    <button onClick={this.onResetClick}>
+      Reset
+    </button>
     </section>
   )}
 })
