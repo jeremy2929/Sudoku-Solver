@@ -194,7 +194,7 @@ return (
           {
             this.state.boxValue.map((rows, i)=> {
               return (
-                <tr className="boxArea" key={i}>
+                <tr key={i}>
                   {
                     rows.map((cols, j)=>{
                       return (
