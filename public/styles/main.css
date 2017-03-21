@@ -17,10 +17,31 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     appearance: none;
 }
-
 ul{
   padding: 1em;
   list-style: none;
+}
+table, tbody, tr, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td:nth-child(-3n+6){
+  border-right: solid 6px black;
+}
+tr:nth-child(-3n+6){
+  border-bottom: solid 6px black;
+}
+.boxArea{
+  border-bottom: solid 4px blue;
 }
 
 .headerBar{

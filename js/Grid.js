@@ -212,6 +212,7 @@ export default React.createClass({
     this.setState(this.state.boxValue)
   },
   render() {
+
     return (
       <section className="grid_wrapper">
         <table >
