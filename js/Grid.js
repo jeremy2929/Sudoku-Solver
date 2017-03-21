@@ -1,5 +1,4 @@
 import React from "react"
-import {Link} from "react-router"
 import Box from "./Box"
 
 // these counters are for counting two loops, only for counting how many loops to solve puzzle
@@ -14,13 +13,48 @@ export default React.createClass({
       localArray: [],
       // this array stores only the given values from the user before solving begins
       // this is needed to insure these values never change
-         boxValueOriginal: [[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,],[,,,,,,,,]],
+      boxValueOriginal: [
+        new Array(8),
+        new Array(8),
+        new Array(8),
+        new Array(8),
+        new Array(8),
+        new Array(8),
+        new Array(8),
+        new Array(8),
+        new Array(8),
+      ],
       // this array will contain map of all values of the 81 squares
-          boxValue: [[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "],[" "," "," "," "," "," "," "," "," "]],
+      boxValue: [
+        new Array(8),
+        new Array(8),
+        new Array(8),
+        new Array(8),
+        new Array(8),
+        new Array(8),
+        new Array(8),
+        new Array(8),
+        new Array(8),
+      ],
       // this array contains unique identifier for each of the 81 squares
       boxId: [["00","01","02","09","10","11","18","19","20"],
-              ["03","04","05","12","13","14","21","22","23"],["06","07","08","15","16","17","24","25","26"],["27","28","29","36","37","38","45","46","47"],["30","31","32","39","40","41","48","49","50"],["33","34","35","42","43","44","51","52","53"],["54","55","56","63","64","65","72","73","74"],["57","58","59","66","67","68","75","76","77"],["60","61","62","69","70","71","78","79","80"]]
+              ["03","04","05","12","13","14","21","22","23"],
+              ["06","07","08","15","16","17","24","25","26"],
+              ["27","28","29","36","37","38","45","46","47"],
+              ["30","31","32","39","40","41","48","49","50"],
+              ["33","34","35","42","43","44","51","52","53"],
+              ["54","55","56","63","64","65","72","73","74"],
+              ["57","58","59","66","67","68","75","76","77"],
+              ["60","61","62","69","70","71","78","79","80"]]
     }
+  },
+  componentWillMount(){
+    // fills boxValue array with one space so it will render
+    for (var r = 0; r < 9; r++){
+       for (var c = 0; c < 9; c++){
+         this.state.boxValue[r][c] = " "
+       }
+     }
   },
   updateBoard(i, j, boxContent) {
     // determine mathematically in which local 3x3 square this square is located (0 thru 8)
@@ -134,6 +168,12 @@ export default React.createClass({
                 // if Row exceeds 8, puzzle is solved. Set Column to max to end loop
                 if (solveR > 8){
                   solveC = 9
+                  this.setState(this.state.boxValue)
+                  for (var r = 0; r < 9; r++){
+                    for (var c = 0; c < 9; c++){
+                      console.log(this.state.boxValue[r][c][1]);
+                    }
+                  }
                   console.log("counterBox=",counterBox,"counterValue=",counterValue);
                 }
               }
@@ -177,6 +217,7 @@ export default React.createClass({
             valueStart = Number(this.state.boxValue[solveR][solveC][0]) + 1
             if (backupFlag === false){this.state.boxValue[solveR][solveC] = "0"}
           }
+          // if valueStart exceeds 9, no solution for box so back up again by setting backupFlag = true
           if(valueStart > 9){
             backupFlag = true
           }
@@ -187,28 +228,28 @@ export default React.createClass({
     this.setState(this.state.boxValue)
   },
   render() {
-return (
-    <section className="grid_wrapper">
-      <table >
-        <tbody>
-          {
-            this.state.boxValue.map((rows, i)=> {
-              return (
-                <tr className="boxArea" key={i}>
-                  {
-                    rows.map((cols, j)=>{
-                      return (
-                        <td key={j}><Box i={i} j={j} updateBoard={this.updateBoard} boxValue={this.state.boxValue}/></td>
-                      )
-                    })
-                  }
-                </tr>
-              )
-            })
-          }
-        </tbody>
-      </table>
-    <button className="solve_button" onClick={this.onSolveClick}>Solve</button>
-    </section>
-  )}
-})
+    return (
+      <section className="grid_wrapper">
+        <table >
+          <tbody>
+            {
+              this.state.boxValue.map((rows, i)=> {
+                return (
+                  <tr className="boxArea" key={i}>
+                    {
+                      rows.map((cols, j)=>{
+                        return (
+                          <td key={j}><Box i={i} j={j} updateBoard={this.updateBoard} boxValue={this.state.boxValue}/></td>
+                        )
+                      })
+                    }
+                  </tr>
+                )
+              })
+            }
+          </tbody>
+        </table>
+        <button className="solve_button" onClick={this.onSolveClick}>Solve</button>
+      </section>
+    )}
+  })
