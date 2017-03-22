@@ -10,7 +10,7 @@ export default React.createClass({
   getInitialState() {
     return {
       // this array will store values for each 3x3 square for testing
-      localArray: [],
+      matrixArray: [],
       // this array stores only the given values from the user before solving begins
       // this is needed to insure these values never change
       boxValueOriginal: [
@@ -50,64 +50,63 @@ export default React.createClass({
   },
   componentWillMount(){
     // fills boxValue array with one space so it will render
-    for (var r = 0; r < 9; r++){
-       for (var c = 0; c < 9; c++){
-         this.state.boxValue[r][c] = " "
+    for (var row = 0; row < 9; row++){
+       for (var column = 0; column < 9; column++){
+         this.state.boxValue[row][column] = " "
        }
      }
   },
   updateBoard(i, j, boxContent) {
     // determine mathematically in which local 3x3 square this square is located (0 thru 8)
     //   by using the unique box ID
-    var localIndex = parseInt(Number(this.state.boxId[i][j]) / 9)
+    var matrixID = parseInt(Number(this.state.boxId[i][j]) / 9)
     // add value given by user to box as first character in string
     // and add value of local 3x3 square as second character in string
-    this.state.boxValue[i][j] = boxContent.toString() + localIndex.toString()
+    this.state.boxValue[i][j] = boxContent.toString() + matrixID.toString()
     // copy same user values in this array to preserve them
-    this.state.boxValueOriginal[i][j] = boxContent.toString() + localIndex.toString()
+    this.state.boxValueOriginal[i][j] = boxContent.toString() + matrixID.toString()
 
   },
-  buildLocalArray(localIndex){
+  buildLocalMatrix(matrixID){
     // defining an empty array to add values contained in local 3x3 square
     var tempArray = []
     // begin 2 loops, one for row, one for column, for all 81 squares
-    for (var R = 0; R < 9; R++) {
-      for (var C = 0; C < 9; C++) {
+    for (var row = 0; row < 9; row++) {
+      for (var column = 0; column < 9; column++) {
         // only build array using squares from local 3x3 square by checking second
         //    character (local 3x3 ID) of the string stored in boxValue array
-        if (this.state.boxValue[R][C][1] === localIndex.toString()){
-          tempArray =  tempArray.concat((this.state.boxValue[R][C][0]))
+        if (this.state.boxValue[row][column][1] === matrixID.toString()){
+          tempArray =  tempArray.concat((this.state.boxValue[row][column][0]))
         }
       }
     }
     // assign the array built to the local 3x3 array that is already in state
-    this.state.localArray = tempArray
+    this.state.matrixArray = tempArray
   },
-  testColumns(solveR,solveV){
+  columnValuesTest(boxRow,tryValue){
     // test all other squares in column for value to be inserted
-    for (var testC = 0; testC < 9; testC++){
+    for (var testColumn = 0; testColumn < 9; testColumn++){
       // value of square is stored as first character of string [0]
-      if (this.state.boxValue[solveR][testC][0] === solveV.toString()){
+      if (this.state.boxValue[boxRow][testColumn][0] === tryValue.toString()){
         return false
       }
     }
     return true
   },
-  testRows(solveC,solveV) {
+  rowValuesTest(boxColumn,tryValue) {
     // test all other squares in row for value to be inserted
-    for (var testR = 0; testR < 9; testR++){
+    for (var testRow = 0; testRow < 9; testRow++){
       // value of square is stored as first character of string [0]
-      if (this.state.boxValue[testR][solveC][0] === solveV.toString()){
+      if (this.state.boxValue[testRow][boxColumn][0] === tryValue.toString()){
         return false
       }
     }
     return true
   },
-  test3x3(solveV,solveR,solveC){
-
+  matrixValuesTest(tryValue,boxRow,boxColumn){
     // test all squares of local 3x3 square for value to be inserted
-    for (var testL = 0; testL < 9; testL++){
-      if (this.state.localArray[testL] === solveV.toString()){
+    for (var testMatrix = 0; testMatrix < 9; testMatrix++){
+      if (this.state.matrixArray[testMatrix] === tryValue.toString()){
         return false
       }
     }
@@ -116,48 +115,47 @@ export default React.createClass({
   onSolveClick(){
     // begin 2 loops, one for Row, one for Column for each square
     var valueStart = 1
-    var solveR = 0
-    while(solveR < 9){
-      var solveC = 0
-      while(solveC < 9){
+    var boxRow = 0
+    while(boxRow < 9){
+      var boxColumn = 0
+      while(boxColumn < 9){
         //
         counterBox++
-
         // begin loop of values 1 thru 9 to try each square
-        for (var solveV = valueStart; solveV < 10; solveV++){
+        for (var tryValue = valueStart; tryValue < 10; tryValue++){
           counterValue++
           // setting flag- will change to false if any tests fail
           var backupFlag = true
           // validate only trying squares that are empty
-          if(this.state.boxValueOriginal[solveR][solveC] === undefined) {
+          if(this.state.boxValueOriginal[boxRow][boxColumn] === undefined) {
             // determine mathematically in which local 3x3 square this square is located (0 thru 8)
             //   by using the unique box ID
-            var localIndex = parseInt(Number(this.state.boxId[solveR][solveC]) / 9)
+            var matrixID = parseInt(Number(this.state.boxId[boxRow][boxColumn]) / 9)
             // calling function to build local 3x3 array to be tested
-            this.buildLocalArray(localIndex)
-            // if all 3 tests pass, insert the value defined by the solveV loop as
+            this.buildLocalMatrix(matrixID)
+            // if all 3 tests pass, insert the value defined by the tryValue loop as
             //      the first character of string at boxValue[][][0]
             // also storing local 3x3 square ID as second character in string
             //      at boxValue[][][1].  This ID is used to build local 3x3 array for
             //      testing.
-            if (this.testColumns(solveR,solveV) && this.testRows(solveC,solveV) && this.test3x3(solveV)){
+            if (this.columnValuesTest(boxRow,tryValue) && this.rowValuesTest(boxColumn,tryValue) && this.matrixValuesTest(tryValue)){
               // all tests pass so insert this value
-              this.state.boxValue[solveR][solveC] = solveV.toString() + localIndex.toString()
+              this.state.boxValue[boxRow][boxColumn] = tryValue.toString() + matrixID.toString()
               // no need to back up in puzzle to change previous values
               backupFlag = false
               // reset valueStart for next box
               valueStart = 1
-              // end this loop of solveV by assigning max value of loop
-              solveV = 9
+              // end this loop of tryValue by assigning max value of loop
+              tryValue = 9
               // move to next box
-              solveC++
+              boxColumn++
               // if column exceeds 8, move to next row and reset column
-              if (solveC > 8){
-                solveR++
-                solveC = 0
+              if (boxColumn > 8){
+                boxRow++
+                boxColumn = 0
                 // if Row exceeds 8, puzzle is solved. Set Column to max to end loop
-                if (solveR > 8){
-                  solveC = 9
+                if (boxRow > 8){
+                  boxColumn = 9
                   console.log("counterBox=",counterBox,"counterValue=",counterValue);
                 }
               }
@@ -169,13 +167,13 @@ export default React.createClass({
           } else {
             backupFlag = false
             valueStart = 1
-            solveV = 9
-            solveC++
-            if (solveC > 8){
-              solveR++
-              solveC = 0
-              if (solveR > 8){
-                solveC = 9
+            tryValue = 9
+            boxColumn++
+            if (boxColumn > 8){
+              boxRow++
+              boxColumn = 0
+              if (boxRow > 8){
+                boxColumn = 9
               }
             }
           }
@@ -183,23 +181,23 @@ export default React.createClass({
         //  Begin of Backup Code
         while(backupFlag){
           backupFlag = false
-          solveC = solveC - 1
-          if (solveC < 0){
-            solveR = solveR - 1
-            solveC = 8
-            if (solveR < 0){
-              solveR = 0
-              solveC = 0
+          boxColumn = boxColumn - 1
+          if (boxColumn < 0){
+            boxRow = boxRow - 1
+            boxColumn = 8
+            if (boxRow < 0){
+              boxRow = 0
+              boxColumn = 0
               backupFlag = false
             }
           }
           // if this box has value in boxValueOriginal array, then skip entire box
-          if(this.state.boxValueOriginal[solveR][solveC] != undefined) {
+          if(this.state.boxValueOriginal[boxRow][boxColumn] != undefined) {
             backupFlag = true
           }
           if (backupFlag === false){
-            valueStart = Number(this.state.boxValue[solveR][solveC][0]) + 1
-            if (backupFlag === false){this.state.boxValue[solveR][solveC] = "0"}
+            valueStart = Number(this.state.boxValue[boxRow][boxColumn][0]) + 1
+            if (backupFlag === false){this.state.boxValue[boxRow][boxColumn] = "0"}
           }
           // if valueStart exceeds 9, no solution for box so back up again by setting backupFlag = true
           if(valueStart > 9){
