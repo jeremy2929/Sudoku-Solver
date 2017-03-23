@@ -104,3 +104,13 @@ tr:nth-child(-3n+6){
 .solve_button{
 
 }
+
+.puzzle_error_hidden{
+    display: none;
+}
+
+.puzzle_error{
+    display: block;
+    margin: 0;
+    padding-top: 1em;
+}

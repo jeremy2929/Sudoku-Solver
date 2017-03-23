@@ -2,6 +2,7 @@ import React from "react"
 import Box from "./Box"
 import {userValuesTest} from './UserTest'
 import {backup} from './Backup'
+import PuzzleError from "./PuzzleError"
 
 // these counters are for counting two loops, only for counting how many loops to solve puzzle
 // counterC counts how many times the code moves forward a box
@@ -10,7 +11,9 @@ var counterBox = 0
 var counterValue = 0
 export default React.createClass({
   getInitialState() {
+    var puzzleError
     return {
+
       // this array will store values for each 3x3 square for testing
       matrixArray: [],
       // this array stores only the given values from the user before solving begins
@@ -115,6 +118,7 @@ export default React.createClass({
   },
   onSolveClick(){
     var thisGrid = this
+    this.state.puzzleError = false
     // only try to solve is good data entered by user
     if(userValuesTest(thisGrid)){
     // begin 2 loops, one for Row, one for Column for each square
@@ -192,8 +196,7 @@ export default React.createClass({
       }
     } else {
       // bad data was entered by user so reset app
-      console.log(test);
-      window.location.reload()
+      this.state.puzzleError = true
     }
     this.setState(this.state.boxValue)
   },
@@ -226,6 +229,7 @@ return (
     <button onClick={this.onResetClick}>
       Reset
     </button>
+    {this.state.puzzleError && <PuzzleError/>}
     </section>
   )}
 })
