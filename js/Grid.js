@@ -1,7 +1,7 @@
 import React from "react"
 import Box from "./Box"
-import {userValuesTest} from './userTest'
-import {backup} from './backup'
+import {userValuesTest} from './UserTest'
+import {backup} from './Backup'
 
 // these counters are for counting two loops, only for counting how many loops to solve puzzle
 // counterC counts how many times the code moves forward a box
