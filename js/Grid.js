@@ -12,7 +12,7 @@ var counterValue = 0
 export default React.createClass({
   getInitialState() {
     return {
-      // this array will store values for each 3x3 square for testing
+      // this array will store values for each 3x3 matrix for testing
       matrixArray: [],
       // this array stores only the given values from the user before solving begins
       // this is needed to insure these values never change
@@ -40,6 +40,7 @@ export default React.createClass({
         new Array(8),
       ],
       // this array contains unique identifier for each of the 81 squares
+      // this is used to mathematically determine which 3x3 matrix the box is in
       boxId: [["00","01","02","09","10","11","18","19","20"],
               ["03","04","05","12","13","14","21","22","23"],
               ["06","07","08","15","16","17","24","25","26"],
@@ -96,7 +97,7 @@ export default React.createClass({
   //   return true
   // },
   columnValuesTest(boxColumn,tryValue) {
-    // test all other squares in row for value to be inserted
+    // test all other squares in column for value to be inserted
     for (var testRow = 0; testRow < 9; testRow++){
       // value of square is stored as first character of string [0]
       if (this.state.boxValue[testRow][boxColumn][0] === tryValue.toString()){
@@ -106,7 +107,7 @@ export default React.createClass({
     return true
   },
   matrixValuesTest(tryValue,boxRow,boxColumn){
-    // test all squares of local 3x3 square for value to be inserted
+    // test all squares of local 3x3 matrix for value to be inserted
     for (var testMatrix = 0; testMatrix < 9; testMatrix++){
       if (this.state.matrixArray[testMatrix] === tryValue.toString()){
         return false
@@ -193,7 +194,6 @@ export default React.createClass({
       }
     } else {
       // bad data was entered by user so reset app
-      console.log(test);
       window.location.reload()
     }
     this.setState(this.state.boxValue)
