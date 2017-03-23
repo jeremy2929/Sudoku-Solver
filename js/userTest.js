@@ -18,7 +18,6 @@ export function userValuesTest(thisGrid){
     })
     for (var x = 1; x < 10; x++){
       if(report[x.toString()] > 1){
-        console.log("Too many ",x,"'s in same column!",report[x.toString()]);
         return false
       }
     }
@@ -42,7 +41,6 @@ export function userValuesTest(thisGrid){
     })
     for (var x = 1; x < 10; x++){
       if(report[x.toString()] > 1){
-        console.log("Too many ",x,"'s in same row!",report[x.toString()]);
         return false
       }
     }
@@ -72,7 +70,6 @@ export function userValuesTest(thisGrid){
     })
     for (var x = 1; x < 10; x++){
       if(report[x.toString()] > 1){
-        console.log("Too many ",x,"'s in same matrix!",report[x.toString()]);
         return false
       }
     }
