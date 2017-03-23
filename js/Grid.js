@@ -1,5 +1,6 @@
 import React from "react"
 import Box from "./Box"
+import {userValuesTest} from './userTest'
 
 // these counters are for counting two loops, only for counting how many loops to solve puzzle
 // counterC counts how many times the code moves forward a box
@@ -65,7 +66,6 @@ export default React.createClass({
     this.state.boxValue[i][j] = boxContent.toString() + matrixID.toString()
     // copy same user values in this array to preserve them
     this.state.boxValueOriginal[i][j] = boxContent.toString() + matrixID.toString()
-
   },
   buildLocalMatrix(matrixID){
     // defining an empty array to add values contained in local 3x3 square
@@ -83,7 +83,7 @@ export default React.createClass({
     // assign the array built to the local 3x3 array that is already in state
     this.state.matrixArray = tempArray
   },
-  columnValuesTest(boxRow,tryValue){
+  rowValuesTest(boxRow,tryValue){
     // test all other squares in column for value to be inserted
     for (var testColumn = 0; testColumn < 9; testColumn++){
       // value of square is stored as first character of string [0]
@@ -93,7 +93,7 @@ export default React.createClass({
     }
     return true
   },
-  rowValuesTest(boxColumn,tryValue) {
+  columnValuesTest(boxColumn,tryValue) {
     // test all other squares in row for value to be inserted
     for (var testRow = 0; testRow < 9; testRow++){
       // value of square is stored as first character of string [0]
@@ -113,6 +113,9 @@ export default React.createClass({
     return true
   },
   onSolveClick(){
+    var thisGrid = this
+    if(userValuesTest(thisGrid)){
+  //  if(userValuesTest(thisGrid){
     // begin 2 loops, one for Row, one for Column for each square
     var valueStart = 1
     var boxRow = 0
@@ -138,7 +141,7 @@ export default React.createClass({
             // also storing local 3x3 square ID as second character in string
             //      at boxValue[][][1].  This ID is used to build local 3x3 array for
             //      testing.
-            if (this.columnValuesTest(boxRow,tryValue) && this.rowValuesTest(boxColumn,tryValue) && this.matrixValuesTest(tryValue)){
+            if (this.rowValuesTest(boxRow,tryValue) && this.columnValuesTest(boxColumn,tryValue) && this.matrixValuesTest(tryValue)){
               // all tests pass so insert this value
               this.state.boxValue[boxRow][boxColumn] = tryValue.toString() + matrixID.toString()
               // no need to back up in puzzle to change previous values
@@ -207,7 +210,13 @@ export default React.createClass({
         // End of backup code
       }
     }
-    this.setState(this.state.boxValue)
+
+  } else {
+    window.location.reload()
+  }
+
+
+  this.setState(this.state.boxValue)
   },
   onResetClick(){
     window.location.reload()
