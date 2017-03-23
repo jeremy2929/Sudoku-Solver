@@ -11,9 +11,9 @@ var counterBox = 0
 var counterValue = 0
 export default React.createClass({
   getInitialState() {
+    // declaring a boolean in state to toggle error message for bad puzzle entered
     var puzzleError
     return {
-
       // this array will store values for each 3x3 square for testing
       matrixArray: [],
       // this array stores only the given values from the user before solving begins
@@ -195,7 +195,7 @@ export default React.createClass({
         }
       }
     } else {
-      // bad data was entered by user so reset app
+      // bad data was entered by user so render an error message
       this.state.puzzleError = true
     }
     this.setState(this.state.boxValue)

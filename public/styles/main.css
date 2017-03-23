@@ -105,10 +105,6 @@ tr:nth-child(-3n+6){
 
 }
 
-.puzzle_error_hidden{
-    display: none;
-}
-
 .puzzle_error{
     display: block;
     margin: 0;
