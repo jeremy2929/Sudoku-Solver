@@ -1,5 +1,3 @@
-import {rowValuesTest, columnValuesTest} from './Tests'
-
 export function userValuesTest(thisGrid){
   // testing each column for more than one value entered
   var columnArray = []
@@ -12,12 +10,12 @@ export function userValuesTest(thisGrid){
       }
       boxRow++
     }
-    var report = {};
+    var columnCount = {};
     columnArray.forEach(function(value){
-      report[value] = report[value] + 1 || 1
+      columnCount[value] = columnCount[value] + 1 || 1
     })
     for (var x = 1; x < 10; x++){
-      if(report[x.toString()] > 1){
+      if(columnCount[x.toString()] > 1){
         return false
       }
     }
@@ -35,12 +33,12 @@ export function userValuesTest(thisGrid){
       }
       boxColumn++
     }
-    var report = {};
+    var rowCount = {};
     rowArray.forEach(function(value){
-      report[value] = report[value] + 1 || 1
+      rowCount[value] = rowCount[value] + 1 || 1
     })
     for (var x = 1; x < 10; x++){
-      if(report[x.toString()] > 1){
+      if(rowCount[x.toString()] > 1){
         return false
       }
     }
@@ -64,12 +62,12 @@ export function userValuesTest(thisGrid){
       }
       boxRow++
     }
-    var report = {};
+    var matrixCount = {};
     matrixArray.forEach(function(value){
-      report[value] = report[value] + 1 || 1
+      matrixCount[value] = matrixCount[value] + 1 || 1
     })
     for (var x = 1; x < 10; x++){
-      if(report[x.toString()] > 1){
+      if(matrixCount[x.toString()] > 1){
         return false
       }
     }

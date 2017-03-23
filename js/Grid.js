@@ -1,6 +1,7 @@
 import React from "react"
 import Box from "./Box"
 import {userValuesTest} from './userTest'
+import {backup} from './backup'
 
 // these counters are for counting two loops, only for counting how many loops to solve puzzle
 // counterC counts how many times the code moves forward a box
@@ -114,109 +115,87 @@ export default React.createClass({
   },
   onSolveClick(){
     var thisGrid = this
+    // only try to solve is good data entered by user
     if(userValuesTest(thisGrid)){
-  //  if(userValuesTest(thisGrid){
     // begin 2 loops, one for Row, one for Column for each square
-    var valueStart = 1
-    var boxRow = 0
-    while(boxRow < 9){
-      var boxColumn = 0
-      while(boxColumn < 9){
-        //
-        counterBox++
-        // begin loop of values 1 thru 9 to try each square
-        for (var tryValue = valueStart; tryValue < 10; tryValue++){
-          counterValue++
-          // setting flag- will change to false if any tests fail
-          var backupFlag = true
-          // validate only trying squares that are empty
-          if(this.state.boxValueOriginal[boxRow][boxColumn] === undefined) {
-            // determine mathematically in which local 3x3 square this square is located (0 thru 8)
-            //   by using the unique box ID
-            var matrixID = parseInt(Number(this.state.boxId[boxRow][boxColumn]) / 9)
-            // calling function to build local 3x3 array to be tested
-            this.buildLocalMatrix(matrixID)
-            // if all 3 tests pass, insert the value defined by the tryValue loop as
-            //      the first character of string at boxValue[][][0]
-            // also storing local 3x3 square ID as second character in string
-            //      at boxValue[][][1].  This ID is used to build local 3x3 array for
-            //      testing.
-            if (this.rowValuesTest(boxRow,tryValue) && this.columnValuesTest(boxColumn,tryValue) && this.matrixValuesTest(tryValue)){
-              // all tests pass so insert this value
-              this.state.boxValue[boxRow][boxColumn] = tryValue.toString() + matrixID.toString()
-              // no need to back up in puzzle to change previous values
+      var valueStart = 1
+      var boxRow = 0
+      while(boxRow < 9){
+        var boxColumn = 0
+        while(boxColumn < 9){
+          //
+          counterBox++
+          // begin loop of values 1 thru 9 to try each square
+          for (var tryValue = valueStart; tryValue < 10; tryValue++){
+            counterValue++
+            // setting flag- will change to false if any tests fail
+            var backupFlag = true
+            // validate only trying squares that are empty
+            if(this.state.boxValueOriginal[boxRow][boxColumn] === undefined) {
+              // determine mathematically in which local 3x3 square this square is located (0 thru 8)
+              //   by using the unique box ID
+              var matrixID = parseInt(Number(this.state.boxId[boxRow][boxColumn]) / 9)
+              // calling function to build local 3x3 array to be tested
+              this.buildLocalMatrix(matrixID)
+              // if all 3 tests pass, insert the value defined by the tryValue loop as
+              //      the first character of string at boxValue[][][0]
+              // also storing local 3x3 square ID as second character in string
+              //      at boxValue[][][1].  This ID is used to build local 3x3 array for
+              //      testing.
+              if (this.rowValuesTest(boxRow,tryValue) && this.columnValuesTest(boxColumn,tryValue) && this.matrixValuesTest(tryValue)){
+                // all tests pass so insert this value
+                this.state.boxValue[boxRow][boxColumn] = tryValue.toString() + matrixID.toString()
+                // no need to back up in puzzle to change previous values
+                backupFlag = false
+                // reset valueStart for next box
+                valueStart = 1
+                // end this loop of tryValue by assigning max value of loop
+                tryValue = 9
+                // move to next box
+                boxColumn++
+                // if column exceeds 8, move to next row and reset column
+                if (boxColumn > 8){
+                  boxRow++
+                  boxColumn = 0
+                  // if Row exceeds 8, puzzle is solved. Set Column to max to end loop
+                  if (boxRow > 8){
+                    boxColumn = 9
+                    console.log("counterBox=",counterBox,"counterValue=",counterValue);
+                  }
+                }
+              } else {
+                // no solution found so need to enter backup code
+                backupFlag = true
+              }
+              // if this box has value in boxValueOriginal array, then skip entire box
+            } else {
               backupFlag = false
-              // reset valueStart for next box
               valueStart = 1
-              // end this loop of tryValue by assigning max value of loop
               tryValue = 9
-              // move to next box
               boxColumn++
-              // if column exceeds 8, move to next row and reset column
               if (boxColumn > 8){
                 boxRow++
                 boxColumn = 0
-                // if Row exceeds 8, puzzle is solved. Set Column to max to end loop
                 if (boxRow > 8){
                   boxColumn = 9
-                  console.log("counterBox=",counterBox,"counterValue=",counterValue);
                 }
               }
-            } else {
-              // no solution found so need to enter backup code
-              backupFlag = true
-            }
-            // if this box has value in boxValueOriginal array, then skip entire box
-          } else {
-            backupFlag = false
-            valueStart = 1
-            tryValue = 9
-            boxColumn++
-            if (boxColumn > 8){
-              boxRow++
-              boxColumn = 0
-              if (boxRow > 8){
-                boxColumn = 9
-              }
             }
           }
+          //  Begin of Backup Code
+          var backupResult = backup(backupFlag,boxRow,boxColumn,thisGrid,valueStart)
+          boxRow =  backupResult.boxRow
+          boxColumn = backupResult.boxColumn
+          valueStart = backupResult.valueStart
+          // End of backup code
         }
-        //  Begin of Backup Code
-        while(backupFlag){
-          backupFlag = false
-          boxColumn = boxColumn - 1
-          if (boxColumn < 0){
-            boxRow = boxRow - 1
-            boxColumn = 8
-            if (boxRow < 0){
-              boxRow = 0
-              boxColumn = 0
-              backupFlag = false
-            }
-          }
-          // if this box has value in boxValueOriginal array, then skip entire box
-          if(this.state.boxValueOriginal[boxRow][boxColumn] != undefined) {
-            backupFlag = true
-          }
-          if (backupFlag === false){
-            valueStart = Number(this.state.boxValue[boxRow][boxColumn][0]) + 1
-            if (backupFlag === false){this.state.boxValue[boxRow][boxColumn] = "0"}
-          }
-          // if valueStart exceeds 9, no solution for box so back up again by setting backupFlag = true
-          if(valueStart > 9){
-            backupFlag = true
-          }
-        }
-        // End of backup code
       }
+    } else {
+      // bad data was entered by user so reset app
+      console.log(test);
+      window.location.reload()
     }
-
-  } else {
-    window.location.reload()
-  }
-
-
-  this.setState(this.state.boxValue)
+    this.setState(this.state.boxValue)
   },
   onResetClick(){
     window.location.reload()
