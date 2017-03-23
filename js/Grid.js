@@ -2,6 +2,7 @@ import React from "react"
 import Box from "./Box"
 import {userValuesTest} from './userTest'
 import {backup} from './backup'
+import {rowValuesTest} from './Tests'
 
 // these counters are for counting two loops, only for counting how many loops to solve puzzle
 // counterC counts how many times the code moves forward a box
@@ -84,16 +85,16 @@ export default React.createClass({
     // assign the array built to the local 3x3 array that is already in state
     this.state.matrixArray = tempArray
   },
-  rowValuesTest(boxRow,tryValue){
-    // test all other squares in column for value to be inserted
-    for (var testColumn = 0; testColumn < 9; testColumn++){
-      // value of square is stored as first character of string [0]
-      if (this.state.boxValue[boxRow][testColumn][0] === tryValue.toString()){
-        return false
-      }
-    }
-    return true
-  },
+  // rowValuesTest(boxRow,tryValue){
+  //   // test all other squares in column for value to be inserted
+  //   for (var testColumn = 0; testColumn < 9; testColumn++){
+  //     // value of square is stored as first character of string [0]
+  //     if (this.state.boxValue[boxRow][testColumn][0] === tryValue.toString()){
+  //       return false
+  //     }
+  //   }
+  //   return true
+  // },
   columnValuesTest(boxColumn,tryValue) {
     // test all other squares in row for value to be inserted
     for (var testRow = 0; testRow < 9; testRow++){
@@ -142,7 +143,7 @@ export default React.createClass({
               // also storing local 3x3 square ID as second character in string
               //      at boxValue[][][1].  This ID is used to build local 3x3 array for
               //      testing.
-              if (this.rowValuesTest(boxRow,tryValue) && this.columnValuesTest(boxColumn,tryValue) && this.matrixValuesTest(tryValue)){
+              if (rowValuesTest(boxRow,tryValue,thisGrid) && this.columnValuesTest(boxColumn,tryValue) && this.matrixValuesTest(tryValue)){
                 // all tests pass so insert this value
                 this.state.boxValue[boxRow][boxColumn] = tryValue.toString() + matrixID.toString()
                 // no need to back up in puzzle to change previous values
