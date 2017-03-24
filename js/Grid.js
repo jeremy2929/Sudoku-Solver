@@ -91,8 +91,9 @@ export default React.createClass({
   },
   onSolveClick(){
     var thisGrid = this
+    // set puzzleError to false to remove any Bad Puzzle message
     this.state.puzzleError = false
-    // only try to solve is good data entered by user
+    // only try to solve if good data entered by user
     if(userValuesTest(thisGrid)){
     // begin 2 loops, one for Row, one for Column for each square
       var valueStart = 1
