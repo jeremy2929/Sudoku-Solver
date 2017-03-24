@@ -110,3 +110,11 @@ tr:nth-child(-3n+6){
     margin: 0;
     padding-top: 1em;
 }
+
+.solving_message_hidden{
+  display: none;
+}
+
+.solving_message_visible{
+  display: block;
+}

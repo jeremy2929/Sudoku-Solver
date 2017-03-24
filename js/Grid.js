@@ -3,6 +3,7 @@ import Box from "./Box"
 import {userValuesTest} from './UserTest'
 import {backup} from './Backup'
 import PuzzleError from "./PuzzleError"
+import Solving from "./SolvingMessage"
 
 // these counters are for counting two loops, only for counting how many loops to solve puzzle
 // counterC counts how many times the code moves forward a box
@@ -13,7 +14,9 @@ export default React.createClass({
   getInitialState() {
     // declaring a boolean in state to toggle error message for bad puzzle entered
     var puzzleError
+    var solving
     return {
+      message: "Ready",
       // this array will store values for each 3x3 square for testing
       matrixArray: [],
       // this array stores only the given values from the user before solving begins
@@ -116,9 +119,36 @@ export default React.createClass({
     }
     return true
   },
+  onSolveClickMessage(){
+    console.log("set state");
+    this.setState({message: "Loading..."})
+    return (
+      <div>
+        <div>{this.state.message}</div>
+      </div>
+    )
+  },
   onSolveClick(){
     var thisGrid = this
     this.state.puzzleError = false
+    this.onSolveClickMessage()
+
+    var mpg = 1
+    while(mpg < 5000){
+      mpg++
+console.log(mpg);
+    //   render: function () {
+    //      return (
+    //          <div>
+    //            <h1 className="solving_message_visible" ref="solvingMessage">Solving puzzle, please wait...</h1>
+    //          </div>
+    //          )
+    //  },
+
+  //  this.refs.solvingMessage.className="solving_message_visible"
+  //  this.setState(this.state.boxValue)
+
+  }
     // only try to solve is good data entered by user
     if(userValuesTest(thisGrid)){
     // begin 2 loops, one for Row, one for Column for each square
@@ -225,10 +255,13 @@ return (
           }
         </tbody>
       </table>
+
     <button className="solve_button" onClick={this.onSolveClick}>Solve</button>
     <button onClick={this.onResetClick}>
       Reset
     </button>
+    <div>{this.state.message}  </div>
+    <h1 className="solving_message_hidden" ref="solvingMessage">Solving puzzle, please wait...</h1>
     {this.state.puzzleError && <PuzzleError/>}
     </section>
   )}
