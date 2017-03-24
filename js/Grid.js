@@ -6,6 +6,7 @@ import {rowValuesTest} from './Tests'
 import {columnValuesTest} from './Tests'
 import {matrixValuesTest} from './Tests'
 
+
 // these counters are for counting two loops, only for counting how many loops to solve puzzle
 // counterC counts how many times the code moves forward a box
 // counterV counts how many times a value is tried in a box
