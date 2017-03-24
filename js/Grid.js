@@ -1,5 +1,6 @@
 import React from "react"
 import Box from "./Box"
+import PuzzleError from "./PuzzleError"
 import {userValuesTest} from './userTest'
 import {backup} from './backup'
 import {rowValuesTest, columnValuesTest, matrixValuesTest} from './Tests'
@@ -11,6 +12,8 @@ var counterBox = 0
 var counterValue = 0
 export default React.createClass({
   getInitialState() {
+    // declaring a boolean in state to toggle error message for bad puzzle entered
+    var puzzleError
     return {
       // this array will store values for each 3x3 matrix for testing
       matrixArray: [],
@@ -88,6 +91,7 @@ export default React.createClass({
   },
   onSolveClick(){
     var thisGrid = this
+    this.state.puzzleError = false
     // only try to solve is good data entered by user
     if(userValuesTest(thisGrid)){
     // begin 2 loops, one for Row, one for Column for each square
@@ -164,8 +168,8 @@ export default React.createClass({
         }
       }
     } else {
-      // bad data was entered by user so reset app
-      window.location.reload()
+      // bad data was entered by user so render an error message
+      this.state.puzzleError = true
     }
     this.setState(this.state.boxValue)
   },
@@ -198,6 +202,7 @@ return (
     <button onClick={this.onResetClick}>
       Reset
     </button>
+    {this.state.puzzleError && <PuzzleError/>}
     </section>
   )}
 })
