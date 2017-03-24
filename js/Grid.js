@@ -2,10 +2,7 @@ import React from "react"
 import Box from "./Box"
 import {userValuesTest} from './userTest'
 import {backup} from './backup'
-import {rowValuesTest} from './Tests'
-import {columnValuesTest} from './Tests'
-import {matrixValuesTest} from './Tests'
-
+import {rowValuesTest, columnValuesTest, matrixValuesTest} from './Tests'
 
 // these counters are for counting two loops, only for counting how many loops to solve puzzle
 // counterC counts how many times the code moves forward a box
@@ -89,35 +86,6 @@ export default React.createClass({
     // assign the array built to the local 3x3 array that is already in state
     this.state.matrixArray = tempArray
   },
-  // rowValuesTest(boxRow,tryValue){
-  //   // test all other squares in column for value to be inserted
-  //   for (var testColumn = 0; testColumn < 9; testColumn++){
-  //     // value of square is stored as first character of string [0]
-  //     if (this.state.boxValue[boxRow][testColumn][0] === tryValue.toString()){
-  //       return false
-  //     }
-  //   }
-  //   return true
-  // },
-  // columnValuesTest(boxColumn,tryValue) {
-  //   // test all other squares in column for value to be inserted
-  //   for (var testRow = 0; testRow < 9; testRow++){
-  //     // value of square is stored as first character of string [0]
-  //     if (this.state.boxValue[testRow][boxColumn][0] === tryValue.toString()){
-  //       return false
-  //     }
-  //   }
-  //   return true
-  // },
-  // matrixValuesTest(tryValue,boxRow,boxColumn){
-  //   // test all squares of local 3x3 matrix for value to be inserted
-  //   for (var testMatrix = 0; testMatrix < 9; testMatrix++){
-  //     if (this.state.matrixArray[testMatrix] === tryValue.toString()){
-  //       return false
-  //     }
-  //   }
-  //   return true
-  // },
   onSolveClick(){
     var thisGrid = this
     // only try to solve is good data entered by user
