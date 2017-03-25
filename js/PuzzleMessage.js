@@ -8,7 +8,7 @@ export default React.createClass({
       return(
         <div>
           <h1 className="puzzle_solved">{this.props.puzzleMessage}</h1>
-          <h2 className="counter_display">Number of values tried= {this.props.counterValue}</h2>
+          <h2 className="counter_display">Number of times a value was tested in each cell = {this.props.counterValue}</h2>
         </div>
       )
     } else {
