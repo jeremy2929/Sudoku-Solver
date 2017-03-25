@@ -84,6 +84,15 @@ tr:nth-child(-3n+6){
   width: 2em;
 }
 
+.box_wrapper_deco {
+  -webkit-appearance: none;
+  border: solid 2px;
+  display: inline-flex;
+  font-size: 1.5em;
+  height: 2em;
+  width: 2em;
+}
+
 .footer_wrapper {
   margin: 0;
   height: 6.1em;
@@ -91,18 +100,84 @@ tr:nth-child(-3n+6){
 }
 
 .grid_wrapper {
+
+  display: inline-block;
   min-height: 38em;
   margin: 0 auto;
   margin-top: 1em;
   width: 29em;
 }
 
-.solve_button{
+.user_box{
+  background-color: white;
+  /*border-top: #999999 10px solid;*/
+  border-top: lightgrey 10px solid;
+  border-left: #999999 10px solid;
+  border-right: #222222 10px solid;
+  border-bottom: #222222 10px solid;
+  display: inline-block;
+  height: auto;
+  margin-left: 5em;
+  margin-top: 2em;
+  margin-right: 8em;
+  padding: 1em;
+  width: 30em;
+  vertical-align: top;
+}
+
+.info_text{
+  font-size: 1em;
+  text-indent: 1em;
 
 }
 
+.solve_button{
+  border-top: #999999 4px solid;
+  border-left: #999999 4px solid;
+  border-right: #222222 4px solid;
+  border-bottom: #222222 4px solid;
+  background-color: grey;
+  font-family: "arial", sans-serif;
+  font-size: 12pt;
+  color: white;
+  font-weight: bold;
+  height: 2.5em;
+  margin-left: 5.5em;
+  width: 5em;
+}
+
+.reset_button{
+  background-color: slategrey;
+  border-top: lightgrey 4px solid;
+  border-left: lightgrey 4px solid;
+  border-right: #222222 4px solid;
+  border-bottom: #222222 4px solid;
+  color: white;
+  font-size: 12pt;
+  font-weight: bolder;
+  margin-left: 5.5em;
+  height: 2.5em;
+  width: 5em;
+}
+
 .puzzle_error{
-    display: block;
-    margin: 0;
-    padding-top: 1em;
+  background-color: red;
+  color: white;
+  height: auto;
+  margin-top: 1em;
+  padding: 1em;
+  text-align: center;
+}
+
+.puzzle_solved{
+  background-color: lightgreen;
+  color: black;
+  margin-top: 1em;
+  padding: 1em;
+  text-align: center;
+}
+
+.counter_display{
+  font-size: 10pt;
+  white-space: pre;
 }

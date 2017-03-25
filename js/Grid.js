@@ -1,9 +1,10 @@
 import React from "react"
 import Box from "./Box"
-import PuzzleError from "./PuzzleError"
-import {userValuesTest} from './userTest'
-import {backup} from './backup'
+import {userValuesTest} from './UserTest'
+import {backup} from './Backup'
 import {rowValuesTest, columnValuesTest, matrixValuesTest} from './Tests'
+import User from "./UserInfo_Buttons"
+
 
 // these counters are for counting two loops, only for counting how many loops to solve puzzle
 // counterC counts how many times the code moves forward a box
@@ -13,7 +14,8 @@ var counterValue = 0
 export default React.createClass({
   getInitialState() {
     // declaring a boolean in state to toggle error message for bad puzzle entered
-    var puzzleError
+    var puzzleMessageDisplay
+    var puzzleMessage = "test"
     return {
       // this array will store values for each 3x3 matrix for testing
       matrixArray: [],
@@ -91,8 +93,8 @@ export default React.createClass({
   },
   onSolveClick(){
     var thisGrid = this
-    // set puzzleError to false to remove any Bad Puzzle message
-    this.state.puzzleError = false
+    // set puzzleMessageDisplay to false to remove any Bad Puzzle message
+    this.state.puzzleMessageDisplay = false
     // only try to solve if good data entered by user
     if(userValuesTest(thisGrid)){
     // begin 2 loops, one for Row, one for Column for each square
@@ -138,7 +140,11 @@ export default React.createClass({
                   // if Row exceeds 8, puzzle is solved. Set Column to max to end loop
                   if (boxRow > 8){
                     boxColumn = 9
+                    this.state.puzzleMessageDisplay = true
+                    this.state.puzzleMessage = "PUZZLE SOLVED"
+                    counterValue = counterValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     console.log("counterBox=",counterBox,"counterValue=",counterValue);
+                    this.setState({counterValue})
                   }
                 }
               } else {
@@ -170,7 +176,8 @@ export default React.createClass({
       }
     } else {
       // bad data was entered by user so render an error message
-      this.state.puzzleError = true
+      this.state.puzzleMessageDisplay = true
+      this.state.puzzleMessage = "PUZZLE ENTERED HAS ERRORS"
     }
     this.setState(this.state.boxValue)
   },
@@ -179,6 +186,12 @@ export default React.createClass({
   },
   render() {
 return (
+  <div>
+    <User counterValue={this.state.counterValue}
+          onSolveClick={this.onSolveClick}
+          onResetClick={this.onResetClick}
+          puzzleMessage={this.state.puzzleMessage}
+          puzzleMessageDisplay={this.state.puzzleMessageDisplay}/>
     <section className="grid_wrapper">
       <table >
         <tbody>
@@ -199,11 +212,7 @@ return (
           }
         </tbody>
       </table>
-    <button className="solve_button" onClick={this.onSolveClick}>Solve</button>
-    <button onClick={this.onResetClick}>
-      Reset
-    </button>
-    {this.state.puzzleError && <PuzzleError/>}
     </section>
+  </div>
   )}
 })
