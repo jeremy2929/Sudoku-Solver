@@ -1,6 +1,6 @@
 import React from "react"
-import { render } from "react-dom"
-import { Router, Route, hashHistory } from "react-router"
+import {render} from "react-dom"
+import {Router, Route, hashHistory} from "react-router"
 import App from "./App"
 import Header from "./Header"
 import Grid from "./Grid"

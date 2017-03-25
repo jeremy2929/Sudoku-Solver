@@ -1,13 +1,13 @@
 import React from "react"
-import { Link } from "react-router"
+import {Link} from "react-router"
 import Grid from "./Grid"
 import PuzzleMessage from "./PuzzleMessage"
 
 export default React.createClass({
-  onSolveClick(){
+  onSolveClick() {
     this.props.onSolveClick()
   },
-  onResetClick(){
+  onResetClick() {
     this.props.onResetClick()
   },
   render() {

@@ -56,10 +56,10 @@ export default React.createClass({
               ["60","61","62","69","70","71","78","79","80"]]
     }
   },
-  componentWillMount(){
+  componentWillMount() {
     // fills boxValue array with one space so it will render
-    for (var row = 0; row < 9; row++){
-       for (var column = 0; column < 9; column++){
+    for (var row = 0; row < 9; row++) {
+       for (var column = 0; column < 9; column++) {
          this.state.boxValue[row][column] = " "
        }
      }
@@ -74,7 +74,7 @@ export default React.createClass({
     // copy same user values in this array to preserve them
     this.state.boxValueOriginal[i][j] = boxContent.toString() + matrixID.toString()
   },
-  buildLocalMatrix(matrixID){
+  buildLocalMatrix(matrixID) {
     // defining an empty array to add values contained in local 3x3 square
     var tempArray = []
     // begin 2 loops, one for row, one for column, for all 81 squares
@@ -82,7 +82,7 @@ export default React.createClass({
       for (var column = 0; column < 9; column++) {
         // only build array using squares from local 3x3 square by checking second
         //    character (local 3x3 ID) of the string stored in boxValue array
-        if (this.state.boxValue[row][column][1] === matrixID.toString()){
+        if (this.state.boxValue[row][column][1] === matrixID.toString()) {
           tempArray =  tempArray.concat((this.state.boxValue[row][column][0]))
         }
       }
@@ -90,24 +90,24 @@ export default React.createClass({
     // assign the array built to the local 3x3 array that is already in state
     this.state.matrixArray = tempArray
   },
-  onSolveClick(){
+  onSolveClick() {
     var thisGrid = this
     // set puzzleMessageDisplay to false to remove any Bad Puzzle message
     this.state.puzzleMessageDisplay = false
     // only try to solve if good data entered by user
-    if(userValuesTest(thisGrid)){
+    if(userValuesTest(thisGrid)) {
     // begin 2 loops, one for Row, one for Column for each square
       var valueStart = 1
       var boxRow = 0
-      while(boxRow < 9){
+      while(boxRow < 9) {
         var boxColumn = 0
-        while(boxColumn < 9){
+        while(boxColumn < 9) {
           //
           counterBox++
           // begin loop of values 1 thru 9 to try each square
-          for (var tryValue = valueStart; tryValue < 10; tryValue++){
+          for (var tryValue = valueStart; tryValue < 10; tryValue++) {
             counterValue++
-            // setting flag- will change to false if any tests fail
+            // setting flag to back up- will change to false a solution is found for box
             var backupFlag = true
             // validate only trying squares that are empty
             if(this.state.boxValueOriginal[boxRow][boxColumn] === undefined) {
@@ -121,7 +121,7 @@ export default React.createClass({
               // also storing local 3x3 square ID as second character in string
               //      at boxValue[][][1].  This ID is used to build local 3x3 array for
               //      testing.
-              if (rowValuesTest(boxRow,tryValue,thisGrid) && columnValuesTest(boxColumn,tryValue,thisGrid) && matrixValuesTest(tryValue,thisGrid)){
+              if (rowValuesTest(boxRow,tryValue,thisGrid) && columnValuesTest(boxColumn,tryValue,thisGrid) && matrixValuesTest(tryValue,thisGrid)) {
                 // all tests pass so insert this value
                 this.state.boxValue[boxRow][boxColumn] = tryValue.toString() + matrixID.toString()
                 // no need to back up in puzzle to change previous values
@@ -133,11 +133,11 @@ export default React.createClass({
                 // move to next box
                 boxColumn++
                 // if column exceeds 8, move to next row and reset column
-                if (boxColumn > 8){
+                if (boxColumn > 8) {
                   boxRow++
                   boxColumn = 0
                   // if Row exceeds 8, puzzle is solved. Set Column to max to end loop
-                  if (boxRow > 8){
+                  if (boxRow > 8) {
                     boxColumn = 9
                     // once puzzle solved, display message by setting puzzleMessageDisplay to true
                     this.state.puzzleMessageDisplay = true
@@ -157,10 +157,10 @@ export default React.createClass({
               valueStart = 1
               tryValue = 9
               boxColumn++
-              if (boxColumn > 8){
+              if (boxColumn > 8) {
                 boxRow++
                 boxColumn = 0
-                if (boxRow > 8){
+                if (boxRow > 8) {
                   boxColumn = 9
                 }
               }
@@ -181,7 +181,7 @@ export default React.createClass({
     }
     this.setState(this.state.boxValue)
   },
-  onResetClick(){
+  onResetClick() {
     window.location.reload()
   },
   render() {

@@ -1,5 +1,5 @@
 export function backup(backupFlag,boxRow,boxColumn,thisGrid,valueStart){
-    while(backupFlag){
+  while(backupFlag) {
     backupFlag = false
     boxColumn = boxColumn - 1
     if (boxColumn < 0){
@@ -15,12 +15,12 @@ export function backup(backupFlag,boxRow,boxColumn,thisGrid,valueStart){
     if(thisGrid.state.boxValueOriginal[boxRow][boxColumn] != undefined) {
       backupFlag = true
     }
-    if (backupFlag === false){
+    if (backupFlag === false) {
       valueStart = Number(thisGrid.state.boxValue[boxRow][boxColumn][0]) + 1
       if (backupFlag === false){thisGrid.state.boxValue[boxRow][boxColumn] = "0"}
     }
     // if valueStart exceeds 9, no solution for box so back up again by setting backupFlag = true
-    if(valueStart > 9){
+    if(valueStart > 9) {
       backupFlag = true
     }
   }

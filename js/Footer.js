@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "react-router"
+import {Link} from "react-router"
 //FIXME: Do we want a copyright here?
 //FIXME: Need to insert links for anchors
 export default React.createClass({

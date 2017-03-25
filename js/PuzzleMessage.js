@@ -1,10 +1,10 @@
 import React from "react"
-import { Link } from "react-router"
+import {Link} from "react-router"
 import Grid from "./Grid"
 
 export default React.createClass({
   render() {
-    if(this.props.puzzleMessage === "PUZZLE SOLVED"){
+    if(this.props.puzzleMessage === "PUZZLE SOLVED") {
       return(
         <div>
           <h1 className="puzzle_solved">{this.props.puzzleMessage}</h1>
