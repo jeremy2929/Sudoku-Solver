@@ -12,20 +12,10 @@ export default React.createClass({
               Handcrafted in San Antonio, TX USA
             </li>
             <li>
-              <a
-                href=""
-                type="_blank">
-                Contact Us
-              </a>
-            </li>
-            <li>
-              <a
-                href=""
-                type="_blank">
-                More Info
-              </a>
+              Copyright Sudoku Puzzle Solver 2017
             </li>
           </ul>
+          <img className="header_GraphicsRight"src="/styles/assets/footer_pattern.png"></img>
         </section>
       </footer>
     )
