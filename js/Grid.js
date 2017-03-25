@@ -3,8 +3,7 @@ import Box from "./Box"
 import {userValuesTest} from './UserTest'
 import {backup} from './Backup'
 import {rowValuesTest, columnValuesTest, matrixValuesTest} from './Tests'
-import User from "./UserInfo_Buttons"
-
+import User from "./Buttons"
 
 // these counters are for counting two loops, only for counting how many loops to solve puzzle
 // counterC counts how many times the code moves forward a box
@@ -140,10 +139,11 @@ export default React.createClass({
                   // if Row exceeds 8, puzzle is solved. Set Column to max to end loop
                   if (boxRow > 8){
                     boxColumn = 9
+                    // once puzzle solved, display message by setting puzzleMessageDisplay to true
                     this.state.puzzleMessageDisplay = true
                     this.state.puzzleMessage = "PUZZLE SOLVED"
+                    // convert the counter value to N,NNN,NNN format
                     counterValue = counterValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    console.log("counterBox=",counterBox,"counterValue=",counterValue);
                     this.setState({counterValue})
                   }
                 }
@@ -175,7 +175,7 @@ export default React.createClass({
         }
       }
     } else {
-      // bad data was entered by user so render an error message
+      // bad data was entered by user so render an error message by setting puzzleMessageDisplay to true
       this.state.puzzleMessageDisplay = true
       this.state.puzzleMessage = "PUZZLE ENTERED HAS ERRORS"
     }
@@ -186,7 +186,7 @@ export default React.createClass({
   },
   render() {
 return (
-  <div>
+  <div className="body_area">
     <User counterValue={this.state.counterValue}
           onSolveClick={this.onSolveClick}
           onResetClick={this.onResetClick}

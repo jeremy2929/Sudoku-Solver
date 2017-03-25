@@ -5,7 +5,7 @@ export default React.createClass({
   render() {
     return(
       <header className="header_Bar">
-        <div >
+        <div>
           <img
             className="header_GraphicsLeft"
             src="/styles/assets/header_pattern.png"></img>
