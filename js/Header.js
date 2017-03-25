@@ -5,15 +5,12 @@ export default React.createClass({
   render() {
     return(
       <header className="header_Bar">
-        <div className="header_GraphicsLeft">
-          <img src="/styles/grid1.png"></img>
+        <div >
+          <img
+            className="header_GraphicsLeft"
+            src="/styles/assets/header_pattern.png"></img>
         </div>
         <h1 className="main_Title">The Sudoku Puzzle Solver</h1>
-
-          <div className="header_GraphicsRight">
-            <img src="/styles/grid2.png"></img>
-          </div>
-
       </header>
     )
   }
