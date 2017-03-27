@@ -12,7 +12,6 @@ var counterBox = 0
 var counterValue = 0
 export default React.createClass({
   getInitialState() {
-
     // declaring a boolean in state to toggle error message for bad puzzle entered
     var puzzleMessageDisplay
     var puzzleMessage = ""
@@ -97,8 +96,6 @@ export default React.createClass({
        for (var column = 0; column < 9; column++) {
          if (this.state.boxValueOriginal[row][column] != undefined){
            if (this.state.boxValueOriginal[row][column].length != 2){
-            // this.state.boxValueOriginal[row][column] = undefined
-            // this.state.boxValue[row][column] = " "
            }
          }
        }
