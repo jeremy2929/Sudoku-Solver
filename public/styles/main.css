@@ -115,6 +115,17 @@ tr:nth-child(-3n+6){
   width: 100%;
 }
 
+.icons{
+  display: inline-block;
+  margin: 0;
+  white-space: pre;
+}
+
+.copyright{
+  margin: 0;
+  white-space: pre;
+}
+
 .grid_wrapper {
   display: inline-block;
   min-height: auto;
@@ -199,7 +210,7 @@ tr:nth-child(-3n+6){
 @media screen and (max-width: 1280px) and (min-width: 1153px) {
 
   .body_area{
-    height: 31.4em;
+    height: 28.5em;
   }
 
   .header_GraphicsRight{
