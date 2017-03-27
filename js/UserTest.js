@@ -73,5 +73,15 @@ export function userValuesTest(thisGrid){
     }
     var matrixArray = []
   }
+  // test for values entered which are more than one digit
+  for (var row = 0; row < 9; row++) {
+     for (var column = 0; column < 9; column++) {
+       if (thisGrid.state.boxValueOriginal[row][column] != undefined){
+         if (thisGrid.state.boxValueOriginal[row][column].length != 2){
+           return false
+         }
+       }
+     }
+   }
   return true
 }

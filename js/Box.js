@@ -9,7 +9,7 @@ export default React.createClass({
   },
   render() {
     return(
-      <input className="box_wrapper" ref="numberInput" type="number" placeholder={this.props.boxValue[this.props.i][this.props.j][0]} onChange={this.numberInput}></input>
+      <input className="box_wrapper" ref="numberInput" type="number" maxLength="1" placeholder={this.props.boxValue[this.props.i][this.props.j][0]} onChange={this.numberInput}></input>
     )
   }
 })
