@@ -73,7 +73,7 @@ export function userValuesTest(thisGrid){
     }
     var matrixArray = []
   }
-  // test for values entered which are more than one digit
+  // test for values in array entered by user which are not 2 characters (value and matrix ID)
   for (var row = 0; row < 9; row++) {
      for (var column = 0; column < 9; column++) {
        if (thisGrid.state.boxValueOriginal[row][column] != undefined){

@@ -6,9 +6,11 @@ var FontAwesome = require('react-fontawesome')
 //FIXME: Need to insert links for anchors
 export default React.createClass({
   Gadget89() {
+    // Gadget89's Portfolio
     window.open("https://nicolas-roybal-portfolio.herokuapp.com", '_blank')
   },
   jeremy2929() {
+    // jeremy2929's Portfolio
     window.open("https://portfolio-jw.herokuapp.com", '_blank')
   },
   render() {

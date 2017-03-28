@@ -5,9 +5,11 @@ import PuzzleMessage from "./PuzzleMessage"
 
 export default React.createClass({
   onSolveClick() {
+    // execute onSolveClick function in Grid.js
     this.props.onSolveClick()
   },
   onResetClick() {
+    // execute onResetClick function in Grid.js
     this.props.onResetClick()
   },
   render() {

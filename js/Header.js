@@ -3,6 +3,7 @@ import {Link} from "react-router"
 
 export default React.createClass({
   sudokuCode() {
+    // link to source code on GitHub
     window.open("https://github.com/jeremy2929/Sudoku-Solver", '_blank')
   },
   render() {

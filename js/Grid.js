@@ -5,10 +5,7 @@ import {backup} from './Backup'
 import {rowValuesTest, columnValuesTest, matrixValuesTest} from './Tests'
 import User from "./Buttons"
 
-// these counters are for counting two loops, only for counting how many loops to solve puzzle
-// counterC counts how many times the code moves forward a box
-// counterV counts how many times a value is tried in a box
-var counterBox = 0
+// counterValue counts how many times a value is tried in a box
 var counterValue = 0
 export default React.createClass({
   getInitialState() {
@@ -91,7 +88,9 @@ export default React.createClass({
     this.state.matrixArray = tempArray
   },
   onSolveClick() {
-    // assgin THIS to variable to pass to external functions in order to reference arrays in state
+    // this function begins solving puzzle, starting at Row 0, Column 0, testing each value and backing up when necessary
+    //
+    // assign THIS to variable to pass to external functions in order to reference arrays in state
     var thisGrid = this
     // set puzzleMessageDisplay to false to remove any Bad Puzzle message
     this.state.puzzleMessageDisplay = false
@@ -103,10 +102,9 @@ export default React.createClass({
       while(boxRow < 9) {
         var boxColumn = 0
         while(boxColumn < 9) {
-          //
-          counterBox++
           // begin loop of values 1 thru 9 to try each square
           for (var tryValue = valueStart; tryValue < 10; tryValue++) {
+            // counting how many times a value will be tested in a box
             counterValue++
             // setting flag to back up- will change to false a solution is found for box
             var backupFlag = true
@@ -117,6 +115,7 @@ export default React.createClass({
               var matrixID = parseInt(Number(this.state.boxId[boxRow][boxColumn]) / 9)
               // calling function to build local 3x3 array to be tested
               this.buildLocalMatrix(matrixID)
+              //
               // if all 3 tests pass, insert the value defined by the tryValue loop as
               //      the first character of string at boxValue[][][0]
               // also storing local 3x3 square ID as second character in string
@@ -133,7 +132,7 @@ export default React.createClass({
                 tryValue = 9
                 // move to next box
                 boxColumn++
-                // if column exceeds 8, move to next row and reset column
+                // if Column exceeds 8, move to next row and reset column
                 if (boxColumn > 8) {
                   boxRow++
                   boxColumn = 0
@@ -172,7 +171,7 @@ export default React.createClass({
           boxRow =  backupResult.boxRow
           boxColumn = backupResult.boxColumn
           valueStart = backupResult.valueStart
-          // End of backup code
+          // End of Backup Code
         }
       }
     } else {
@@ -183,6 +182,7 @@ export default React.createClass({
     this.setState(this.state.boxValue)
   },
   onResetClick() {
+    // reset all boxes by reloading app
     window.location.reload()
   },
   render() {
