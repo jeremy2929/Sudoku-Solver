@@ -6,10 +6,10 @@ var FontAwesome = require('react-fontawesome')
 //FIXME: Need to insert links for anchors
 export default React.createClass({
   Gadget89() {
-    window.open("https://github.com/Gadget89", '_blank')
+    window.open("https://nicolas-roybal-portfolio.herokuapp.com", '_blank')
   },
   jeremy2929() {
-    window.open("https://github.com/jeremy2929", '_blank')
+    window.open("https://portfolio-jw.herokuapp.com", '_blank')
   },
   render() {
     return(
@@ -17,15 +17,13 @@ export default React.createClass({
         <section>
           <ul>
             <li className="icons">
-              A team project by...
-              <a href="#" onClick={this.Gadget89}>
-                <i className="fa fa-github" aria-hidden="true">Gadget89</i>
+              A team project by
+              <a className="our_name" href="#" onClick={this.Gadget89}> Nicolas Roybal
               </a>
-              <p className="icons"> & </p>
-              <a href="#" onClick={this.jeremy2929}>
-                <i className="fa fa-github" aria-hidden="true"></i>jeremy2929
+              <p className="footer_and"> and </p>
+              <a className="our_name" href="#" onClick={this.jeremy2929}>Jeremy Ward
               </a>
-              <p className="copyright">Copyright Sudoku Puzzle Solver 2017</p>
+              <p className="copyright_text">Copyright Sudoku Puzzle Solver 2017</p>
             </li>
           </ul>
           <img className="header_GraphicsRight"src="/styles/assets/footer_pattern.png"></img>
