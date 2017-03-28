@@ -16,11 +16,10 @@ export default React.createClass({
       <footer className="footer_wrapper">
         <section>
           <ul>
-            <li className="icons">
-              A team project by
+            <li className="footer_text">A team project by
               <a className="our_name" href="#" onClick={this.Gadget89}> Nicolas Roybal
               </a>
-              <p className="footer_and"> and </p>
+              <p className="footer_text"> and </p>
               <a className="our_name" href="#" onClick={this.jeremy2929}>Jeremy Ward
               </a>
               <p className="copyright_text">Copyright Sudoku Puzzle Solver 2017</p>
