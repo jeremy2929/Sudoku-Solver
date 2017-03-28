@@ -425,6 +425,7 @@ and (max-device-width : 480px) {
 
     .fa-github{
       color: darkgrey;
+      float: right;
       margin-right: 1em;
       transition: color 0.8s ease;
     }
