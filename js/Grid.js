@@ -14,7 +14,7 @@ export default React.createClass({
   getInitialState() {
     // declaring a boolean in state to toggle error message for bad puzzle entered
     var puzzleMessageDisplay
-    var puzzleMessage = "test"
+    var puzzleMessage = ""
     return {
       // this array will store values for each 3x3 matrix for testing
       matrixArray: [],
@@ -57,7 +57,7 @@ export default React.createClass({
     }
   },
   componentWillMount() {
-    // fills boxValue array with one space so it will render
+  //  fills boxValue array with one space so it will render
     for (var row = 0; row < 9; row++) {
        for (var column = 0; column < 9; column++) {
          this.state.boxValue[row][column] = " "
@@ -90,7 +90,21 @@ export default React.createClass({
     // assign the array built to the local 3x3 array that is already in state
     this.state.matrixArray = tempArray
   },
+  cleanGrid(){
+    // this function ensures all values entered by user have been stored as 2 characters: for value and matrix ID
+    for (var row = 0; row < 9; row++) {
+       for (var column = 0; column < 9; column++) {
+         if (this.state.boxValueOriginal[row][column] != undefined){
+           if (this.state.boxValueOriginal[row][column].length != 2){
+           }
+         }
+       }
+     }
+  },
   onSolveClick() {
+    // ensure good data entered by user
+    this.cleanGrid()
+    // assgin THIS to variable to pass to external functions in order to reference arrays in state
     var thisGrid = this
     // set puzzleMessageDisplay to false to remove any Bad Puzzle message
     this.state.puzzleMessageDisplay = false
@@ -137,7 +151,7 @@ export default React.createClass({
                   boxRow++
                   boxColumn = 0
                   // if Row exceeds 8, puzzle is solved. Set Column to max to end loop
-                  if (boxRow > 8) {
+                  if (boxRow > 8 || (boxRow === 8 && boxColumn === 8)) {
                     boxColumn = 9
                     // once puzzle solved, display message by setting puzzleMessageDisplay to true
                     this.state.puzzleMessageDisplay = true
