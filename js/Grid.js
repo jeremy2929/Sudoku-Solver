@@ -90,20 +90,7 @@ export default React.createClass({
     // assign the array built to the local 3x3 array that is already in state
     this.state.matrixArray = tempArray
   },
-  cleanGrid(){
-    // this function ensures all values entered by user have been stored as 2 characters: for value and matrix ID
-    for (var row = 0; row < 9; row++) {
-       for (var column = 0; column < 9; column++) {
-         if (this.state.boxValueOriginal[row][column] != undefined){
-           if (this.state.boxValueOriginal[row][column].length != 2){
-           }
-         }
-       }
-     }
-  },
   onSolveClick() {
-    // ensure good data entered by user
-    this.cleanGrid()
     // assgin THIS to variable to pass to external functions in order to reference arrays in state
     var thisGrid = this
     // set puzzleMessageDisplay to false to remove any Bad Puzzle message
