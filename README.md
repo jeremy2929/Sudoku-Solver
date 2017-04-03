@@ -1,9 +1,11 @@
 # Sudoku-Solver
-## *** Under Construction ***
+## Version 1.0
 
 ##  Objective:
 The purpose of this app is to allow user to set up a Sudoku puzzle, then
 have the app solve the puzzle.
+
+##  Comments:
 
 
 ## Developer Setup
