@@ -1,9 +1,6 @@
 import React from "react"
 import {Link} from "react-router"
-var FontAwesome = require('react-fontawesome')
 
-//FIXME: Do we want a copyright here?
-//FIXME: Need to insert links for anchors
 export default React.createClass({
   Gadget89() {
     // Gadget89's Portfolio
