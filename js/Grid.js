@@ -2,7 +2,7 @@ import React from "react"
 import Box from "./Box"
 import {userValuesTest} from './UserTest'
 import {backup} from './Backup'
-import {rowValuesTest, columnValuesTest, matrixValuesTest} from './Tests'
+import * as Tests from './Tests'
 import User from "./Buttons"
 
 // counterValue counts how many times a value is tried in a box
@@ -121,7 +121,7 @@ export default React.createClass({
               // also storing local 3x3 square ID as second character in string
               //      at boxValue[][][1].  This ID is used to build local 3x3 array for
               //      testing.
-              if (rowValuesTest(boxRow,tryValue,thisGrid) && columnValuesTest(boxColumn,tryValue,thisGrid) && matrixValuesTest(tryValue,thisGrid)) {
+              if (Tests.rowValuesTest(boxRow,tryValue,thisGrid) && Tests.columnValuesTest(boxColumn,tryValue,thisGrid) && Tests.matrixValuesTest(tryValue,thisGrid)) {
                 // all tests pass so insert this value
                 this.state.boxValue[boxRow][boxColumn] = tryValue.toString() + matrixID.toString()
                 // no need to back up in puzzle to change previous values
