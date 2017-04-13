@@ -139,6 +139,8 @@ tr:nth-child(-3n+6){
   margin: 0;
   height: 6.1em;
   width: 100%;
+  bottom: 0;
+  position: absolute;
 }
 
 .our_name{
@@ -240,7 +242,7 @@ tr:nth-child(-3n+6){
 @media screen and (max-width: 1280px) and (min-width: 1153px) {
 
   .body_area{
-    height: 28.5em;
+    height: auto;
   }
 
   .header_GraphicsRight{
