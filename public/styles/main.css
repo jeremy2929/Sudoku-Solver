@@ -7,6 +7,9 @@ a{
 }
 
 body{
+  /*background-image: url("/styles/images.jpg");*/
+  /*background-image: url("/styles/desk1.jpg");*/
+
   font-family: helvetica;
   margin: 0;
 }
@@ -247,7 +250,32 @@ tr:nth-child(-3n+6) {
   border-right: #222222 4px solid;
   border-bottom: #222222 4px solid;
   color: white;
-  /*font-size: 12pt;*/
+  font-weight: bolder;
+  margin-left: .5em;
+  height: 2.5em;
+  width: auto;
+}
+
+.load_example2_button{
+  background-color: slategrey;
+  border-top: lightgrey 4px solid;
+  border-left: lightgrey 4px solid;
+  border-right: #222222 4px solid;
+  border-bottom: #222222 4px solid;
+  color: white;
+  font-weight: bolder;
+  margin-left: .5em;
+  height: 2.5em;
+  width: auto;
+}
+
+.load_example3_button{
+  background-color: slategrey;
+  border-top: lightgrey 4px solid;
+  border-left: lightgrey 4px solid;
+  border-right: #222222 4px solid;
+  border-bottom: #222222 4px solid;
+  color: white;
   font-weight: bolder;
   margin-left: .5em;
   height: 2.5em;

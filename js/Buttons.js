@@ -16,6 +16,14 @@ export default React.createClass({
     // execute onLoadExample1Click function in Grid.js
     this.props.onLoadExample1Click()
   },
+  onLoadExample2Click() {
+    // execute onLoadExample1Click function in Grid.js
+    this.props.onLoadExample2Click()
+  },
+  onLoadExample3Click() {
+    // execute onLoadExample1Click function in Grid.js
+    this.props.onLoadExample3Click()
+  },
   render() {
     return(
       <div className="user_box" >
@@ -23,6 +31,8 @@ export default React.createClass({
         <button className="solve_button" onClick={this.onSolveClick}>Solve</button>
         <button className="reset_button" onClick={this.onResetClick}>Reset</button>
         <button className="load_example1_button" onClick={this.onLoadExample1Click}>Example 1</button>
+        <button className="load_example2_button" onClick={this.onLoadExample2Click}>Example 2</button>
+        <button className="load_example3_button" onClick={this.onLoadExample3Click}>Example 3</button>
         {this.props.puzzleMessageDisplay && <PuzzleMessage
           counterValue={this.props.counterValue}
           puzzleMessage={this.props.puzzleMessage}/>}
