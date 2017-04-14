@@ -185,12 +185,20 @@ export default React.createClass({
     // reset all boxes by reloading app
     window.location.reload()
   },
+  onLoadExample1Click() {
+    //    this.state.boxValueOriginal = [[,,,"61",,,"42",,],["70",,,,,"31","62",,],[,,,,"91","11",,"82",],[,,,,,,,,],[,"53",,"14","84",,,,"35"],[,,,"34",,"64",,"45","55"],[,"46",,"27",,,,"68",],["96",,"36",,,,,,],[,"26",,,,,"18",,]],
+        this.state.boxValueOriginal = [[,,,"21","61",,"72",,"12"],["60","80",,,"71",,,"92",],["10","90",,,,"41","52",,],["83","23",,"14",,,,"45",],[,,"43","64",,"24","95",,],[,"53",,,,"34",,"25","85"],[,,"96","37",,,,"78","48"],[,"46",,,"57",,,"38","68"],["76",,"36",,"17","87",,,]],
+//        this.state.boxValue = [[" "," "," ","61"," "," ","42"," "," "],["70"," "," "," "," ","31","62"," "," "],[" "," "," "," ","91","11"," ","82"," "],[" "," "," "," "," "," "," "," "," "],[" ","53"," ","14","84"," "," "," ","35"],[" "," "," ","34"," ","64"," ","45","55"],[" ","46"," ","27"," "," "," ","68"," "],["96"," ","36"," "," "," "," "," "," "],[" ","26"," "," "," "," ","18"," "," "]],
+this.state.boxValue = [[" "," "," ","21","61"," ","72"," ","12"],["60","80"," "," ","71"," "," ","92"," "],["10","90"," "," "," ","41","52"," "," "],["83","23"," ","14"," "," "," ","45"," "],[" "," ","43","64"," ","24","95"," "," "],[" ","53"," "," "," ","34"," ","25","85"],[" "," ","96","37"," "," "," ","78","48"],[" ","46"," "," ","57"," "," ","38","68"],["76"," ","36"," ","17","87"," "," "," "]],
+this.setState(this.state.boxValue)
+  },
   render() {
 return (
   <div className="body_area">
     <User counterValue={this.state.counterValue}
           onSolveClick={this.onSolveClick}
           onResetClick={this.onResetClick}
+          onLoadExample1Click={this.onLoadExample1Click}
           puzzleMessage={this.state.puzzleMessage}
           puzzleMessageDisplay={this.state.puzzleMessageDisplay}/>
     <section className="grid_wrapper">
@@ -203,7 +211,7 @@ return (
                   {
                     rows.map((cols, j)=>{
                       return (
-                        <td key={j}><Box i={i} j={j} updateBoard={this.updateBoard} boxValue={this.state.boxValue}/></td>
+                        <td key={j}><Box i={i} j={j} updateBoard={this.updateBoard} boxValue={this.state.boxValue} boxValueOriginal={this.state.boxValueOriginal}/></td>
                       )
                     })
                   }

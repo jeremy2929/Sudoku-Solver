@@ -12,12 +12,17 @@ export default React.createClass({
     // execute onResetClick function in Grid.js
     this.props.onResetClick()
   },
+  onLoadExample1Click() {
+    // execute onLoadExample1Click function in Grid.js
+    this.props.onLoadExample1Click()
+  },
   render() {
     return(
       <div className="user_box" >
         <p className="info_text">This app allows you to enter a Sudoku puzzle and then click Solve button to have the app solve the puzzle.  It will display an error message if a bad puzzle has been entered.  To enter a puzzle, click on each box and type in the number.  The method used to solve is methodical brute force.</p>
         <button className="solve_button" onClick={this.onSolveClick}>Solve</button>
         <button className="reset_button" onClick={this.onResetClick}>Reset</button>
+        <button className="load_example1_button" onClick={this.onLoadExample1Click}>Example 1</button>
         {this.props.puzzleMessageDisplay && <PuzzleMessage
           counterValue={this.props.counterValue}
           puzzleMessage={this.props.puzzleMessage}/>}
