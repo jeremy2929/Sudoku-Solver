@@ -53,6 +53,14 @@ td:nth-child(-3n+6) {
 tr:nth-child(-3n+6) {
   border-bottom: solid 6px black;
 }
+.hidden {
+  display: none;
+}
+.modal {
+  position: relative;
+  z-index: 15;
+  background-color: white;
+}
 
 .body_area {
   height: 38em;
@@ -213,6 +221,13 @@ tr:nth-child(-3n+6) {
   font-size: 1em;
   text-indent: 1em;
 }
+.info_example {
+  display: none;
+}
+.button_wrapper {
+  width: 27em;
+  text-align: center;
+}
 
 .solve_button{
   border-top: #999999 4px solid;
@@ -225,8 +240,8 @@ tr:nth-child(-3n+6) {
   color: white;
   font-weight: bold;
   height: 2.5em;
-  margin-left: 5.5em;
-  width: 5em;
+  margin-right: 1em;
+  width: 6em;
 }
 
 .reset_button{
@@ -354,7 +369,7 @@ tr:nth-child(-3n+6) {
   .solve_button{
     font-size: 20pt;
     height: 3em;
-    margin-left: 7em;
+    /*margin-left: 7em;*/
     margin-top: 1em;
     padding: 0;
     width: 6em;
@@ -476,6 +491,9 @@ and (max-device-width : 480px) {
     .body_area{
       height: 95em;
       width: 100%;
+    }
+    .button_wrapper {
+      width: 39em;
     }
 
     .main_Title{
