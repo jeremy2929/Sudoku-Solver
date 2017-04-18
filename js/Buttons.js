@@ -28,6 +28,7 @@ export default React.createClass({
     this.refs.examples.className = "hidden"
   },
   onExampleCLick(e) {
+    // button to display 3 buttons for loading 3 different example puzzles
     this.refs.examples.className = "modal_examples"
     this.refs.infoText.className = "hidden"
   },

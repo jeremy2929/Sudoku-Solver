@@ -179,17 +179,17 @@ tr:nth-child(-3n+6) {
   position: fixed;;
 }
 
-.our_name{
+.our_name {
   color: magenta;
 }
 
-.footer_text{
+.footer_text {
   display: inline-block;
   margin: 0;
   white-space: pre;
 }
 
-.copyright_text{
+.copyright_text {
   margin: 0;
   white-space: pre;
 }
@@ -202,7 +202,7 @@ tr:nth-child(-3n+6) {
   width: 29em;
 }
 
-.user_box{
+.user_box {
   background-color: white;
   border-top: lightgrey 10px solid;
   border-left: #999999 10px solid;
@@ -218,7 +218,7 @@ tr:nth-child(-3n+6) {
   vertical-align: top;
 }
 
-.info_text{
+.info_text {
   font-size: 1em;
   text-indent: 1em;
 }
@@ -230,7 +230,7 @@ tr:nth-child(-3n+6) {
   text-align: center;
 }
 
-.solve_button{
+.solve_button {
   border-top: #999999 4px solid;
   border-left: #999999 4px solid;
   border-right: #222222 4px solid;
@@ -246,7 +246,7 @@ tr:nth-child(-3n+6) {
   width: 6em;
 }
 
-.reset_button{
+.reset_button {
   background-color: slategrey;
   border-top: lightgrey 4px solid;
   border-left: lightgrey 4px solid;
@@ -260,7 +260,7 @@ tr:nth-child(-3n+6) {
   width: 5em;
 }
 
-.load_example1_button{
+.load_example1_button {
   background-color: slategrey;
   border-top: lightgrey 4px solid;
   border-left: lightgrey 4px solid;
@@ -273,7 +273,7 @@ tr:nth-child(-3n+6) {
   width: auto;
 }
 
-.load_example2_button{
+.load_example2_button {
   background-color: slategrey;
   border-top: lightgrey 4px solid;
   border-left: lightgrey 4px solid;
@@ -286,7 +286,7 @@ tr:nth-child(-3n+6) {
   width: auto;
 }
 
-.load_example3_button{
+.load_example3_button {
   background-color: slategrey;
   border-top: lightgrey 4px solid;
   border-left: lightgrey 4px solid;
@@ -299,7 +299,7 @@ tr:nth-child(-3n+6) {
   width: auto;
 }
 
-.puzzle_error{
+.puzzle_error {
   background-color: red;
   color: white;
   height: auto;
@@ -308,7 +308,7 @@ tr:nth-child(-3n+6) {
   text-align: center;
 }
 
-.puzzle_solved{
+.puzzle_solved {
   background-color: lightgreen;
   color: black;
   margin-top: 1em;
@@ -316,7 +316,7 @@ tr:nth-child(-3n+6) {
   text-align: center;
 }
 
-.counter_display{
+.counter_display {
   font-size: 10pt;
   text-align: center;
   white-space: pre;
@@ -324,51 +324,51 @@ tr:nth-child(-3n+6) {
 
 @media screen and (max-width: 1280px) and (min-width: 1153px) {
 
-  .body_area{
+  .body_area {
     height: 31.2em;
   }
 
-  .header_GraphicsRight{
+  .header_GraphicsRight {
     margin-right: 0;
   }
 }
 
 @media screen and (max-width: 1152px) and (min-width: 519px) {
 
-  .user_box{
+  .user_box {
     margin-left: 1em;
     margin-top: .5em;
     margin-right: 3em;
   }
 
-  .body_area{
+  .body_area {
     height: 26.5em;
   }
 
-  .header_GraphicsRight{
+  .header_GraphicsRight {
     margin-right: 0;
   }
 }
 
 @media screen and (max-width: 1151px) and (min-width: 517px) {
 
-  .body_area{
+  .body_area {
     height: 81em;
   }
 
-  .user_box{
+  .user_box {
     margin-left: 3em;
     padding: .8em;
     width: auto;
   }
 
-  .info_text{
+  .info_text {
     font-size: 1.8em;
     text-indent: 1em;
     margin: 0;
   }
 
-  .solve_button{
+  .solve_button {
     font-size: 20pt;
     height: 3em;
     margin-top: 1em;
@@ -376,7 +376,7 @@ tr:nth-child(-3n+6) {
     width: 6em;
   }
 
-  .reset_button{
+  .reset_button {
     font-size: 20pt;
     height: 3em;
     margin-left: 7em;
@@ -384,7 +384,7 @@ tr:nth-child(-3n+6) {
     width: 7em;
   }
 
-  .puzzle_solved{
+  .puzzle_solved {
     font-size: 20pt;
     margin: 0 auto;
     margin-top: .2em;
@@ -394,7 +394,7 @@ tr:nth-child(-3n+6) {
     vertical-align: middle;
   }
 
-  .counter_display{
+  .counter_display {
     font-size: 20pt;
     margin-bottom: .1em;
     margin-top: .1em;
@@ -413,16 +413,16 @@ tr:nth-child(-3n+6) {
 and (min-device-width : 481px)
 and (max-device-width : 800px) {
 
-  .body_area{
+  .body_area {
     height: 95em;
   }
 
-  .main_Title{
+  .main_Title {
     font-size: 3em;
     margin-left: 2em;
   }
 
-  .sudoku_link{
+  .sudoku_link {
     float: right;
     height: 3em;
     margin-top: .2em;
@@ -430,29 +430,29 @@ and (max-device-width : 800px) {
     width: 6em;
   }
 
-  .fa-github{
+  .fa-github {
     color: darkgrey;
     float: right;
     margin-right: 1em;
     transition: color 0.8s ease;
   }
 
-  .sudoku_label{
+  .sudoku_label {
     font-size: 1.5em;
     margin-right: 1em;
     margin-top: 0;
   }
 
-  .user_box{
+  .user_box {
     font-size: 1.3em;
     margin-top: 2em;
   }
 
-  .solve_button{
+  .solve_button {
     margin-top: 1em;
   }
 
-  .reset_button{
+  .reset_button {
     margin-top: 1em;
   }
 
@@ -469,19 +469,19 @@ and (max-device-width : 800px) {
     font-size: 4.7em;
   }
 
-  .our_name{
+  .our_name {
     color: magenta;
     font-size: 1.8em;
   }
 
-  .footer_text{
+  .footer_text {
     display: inline-block;
     font-size: 1.3em;
     margin: 0;
     white-space: pre;
   }
 
-  .copyright_text{
+  .copyright_text {
     font-size: 1em;
     margin: 0;
     margin-bottom: 2em;
@@ -498,7 +498,7 @@ and (max-device-width : 480px) {
       margin-left: 1em;
     }
 
-    .body_area{
+    .body_area {
       height: 95em;
       width: 100%;
     }
@@ -507,12 +507,12 @@ and (max-device-width : 480px) {
       width: 39em;
     }
 
-    .main_Title{
+    .main_Title {
       font-size: 3em;
       margin-left: 2em;
     }
 
-    .sudoku_link{
+    .sudoku_link {
       float: right;
       height: 3em;
       margin-top: .2em;
@@ -520,29 +520,29 @@ and (max-device-width : 480px) {
       width: 6em;
     }
 
-    .fa-github{
+    .fa-github {
       color: darkgrey;
       float: right;
       margin-right: 1em;
       transition: color 0.8s ease;
     }
 
-    .sudoku_label{
+    .sudoku_label {
       font-size: 1.5em;
       margin-right: 1em;
       margin-top: 0;
     }
 
-    .user_box{
+    .user_box {
       font-size: 1.3em;
       margin-top: 2em;
     }
 
-    .solve_button{
+    .solve_button {
       margin-top: 1em;
     }
 
-    .reset_button{
+    .reset_button {
       margin-top: 1em;
     }
 
@@ -559,7 +559,7 @@ and (max-device-width : 480px) {
       font-size: 4.7em;
     }
 
-    .our_name{
+    .our_name {
       color: magenta;
       font-size: 1.8em;
     }
