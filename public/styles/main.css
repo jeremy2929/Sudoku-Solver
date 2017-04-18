@@ -50,10 +50,12 @@ td:nth-child(-3n+6) {
 tr:nth-child(-3n+6) {
   border-bottom: solid 6px black;
 }
+
 .hidden {
   display: none;
 }
-.modal {
+
+.modal_examples {
   position: relative;
   z-index: 15;
   background-color: white;
@@ -63,12 +65,12 @@ tr:nth-child(-3n+6) {
   height: 38em;
 }
 
-.header_Bar {
+.header_bar {
   height: 6.5em;
   margin-top: 0;
 }
 
-.main_Title {
+.main_title {
   display: inline-block;
   font-size: 3em;
   margin-top: .5em;
@@ -89,7 +91,7 @@ tr:nth-child(-3n+6) {
                0 20px 20px rgba(0,0,0,.15);
 }
 
-.header_GraphicsLeft {
+.header_graphics_left {
   display: block;
   float: left;
   margin: 0;
@@ -121,10 +123,9 @@ tr:nth-child(-3n+6) {
   color: #FFA726;
 }
 
-.header_GraphicsRight{
+.header_graphics_right{
   display: block;
   float: right;
-  /*margin-right: .7em;*/
   margin-right: 0;
   width: 6em;
   z-index: 1;
@@ -221,11 +222,11 @@ tr:nth-child(-3n+6) {
   font-size: 1em;
   text-indent: 1em;
 }
-.info_example {
-  display: none;
-}
+
 .button_wrapper {
-  width: 27em;
+  display: block;
+  width: auto;
+  margin-left: 0;
   text-align: center;
 }
 
@@ -241,6 +242,7 @@ tr:nth-child(-3n+6) {
   font-weight: bold;
   height: 2.5em;
   margin-right: 1em;
+  margin-left: 1em;
   width: 6em;
 }
 
@@ -369,7 +371,6 @@ tr:nth-child(-3n+6) {
   .solve_button{
     font-size: 20pt;
     height: 3em;
-    /*margin-left: 7em;*/
     margin-top: 1em;
     padding: 0;
     width: 6em;
@@ -464,6 +465,10 @@ and (max-device-width : 800px) {
     font-size: 4.77em;
   }
 
+  .box_wrapper_load {
+    font-size: 4.7em;
+  }
+
   .our_name{
     color: magenta;
     font-size: 1.8em;
@@ -497,6 +502,7 @@ and (max-device-width : 480px) {
       height: 95em;
       width: 100%;
     }
+
     .button_wrapper {
       width: 39em;
     }
@@ -541,11 +547,15 @@ and (max-device-width : 480px) {
     }
 
     .grid_wrapper {
-      margin-top: .5em;
+      margin-top: 1em;
       margin-left: .5em;
     }
 
     .box_wrapper {
+      font-size: 4.7em;
+    }
+
+    .box_wrapper_load {
       font-size: 4.7em;
     }
 
@@ -565,7 +575,6 @@ and (max-device-width : 480px) {
       font-size: 1em;
       margin: 0;
       margin-bottom: 2em;
-      /*text-align: center;*/
     }
 
   }

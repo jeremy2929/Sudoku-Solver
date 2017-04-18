@@ -8,13 +8,13 @@ export default React.createClass({
   },
   render() {
     return(
-      <header className="header_Bar">
+      <header className="header_bar">
         <div>
           <img
-            className="header_GraphicsLeft"
+            className="header_graphics_left"
             src="/styles/assets/header_pattern.png"></img>
         </div>
-        <h1 className="main_Title">The Sudoku Puzzle Solver</h1>
+        <h1 className="main_title">The Sudoku Puzzle Solver</h1>
         <div className="sudoku_link">
           <a className="nav_button" href="#" onClick={this.sudokuCode}>
             <i className="fa fa-github fa-2x" aria-hidden="true"></i>

@@ -28,7 +28,7 @@ export default React.createClass({
     this.refs.examples.className = "hidden"
   },
   onExampleCLick(e) {
-    this.refs.examples.className = "modal"
+    this.refs.examples.className = "modal_examples"
     this.refs.infoText.className = "hidden"
   },
   render() {
