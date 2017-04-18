@@ -7,8 +7,6 @@ a{
 }
 
 body{
-  /*background-image: url("assets/drop1.jpg");
-  background-size: cover;*/
   font-family: helvetica;
   margin: 0;
 }
@@ -45,24 +43,32 @@ table {
   border-spacing: 0;
 }
 
-td:nth-child(-3n+6){
+td:nth-child(-3n+6) {
   border-right: solid 6px black;
 }
 
-tr:nth-child(-3n+6){
+tr:nth-child(-3n+6) {
   border-bottom: solid 6px black;
 }
+.hidden {
+  display: none;
+}
+.modal {
+  position: relative;
+  z-index: 15;
+  background-color: white;
+}
 
-.body_area{
+.body_area {
   height: 38em;
 }
 
-.header_Bar{
+.header_Bar {
   height: 6.5em;
   margin-top: 0;
 }
 
-.main_Title{
+.main_Title {
   display: inline-block;
   font-size: 3em;
   margin-top: .5em;
@@ -83,20 +89,20 @@ tr:nth-child(-3n+6){
                0 20px 20px rgba(0,0,0,.15);
 }
 
-.header_GraphicsLeft{
+.header_GraphicsLeft {
   display: block;
   float: left;
   margin: 0;
   width: 6em;
 }
 
-.sudoku_link{
+.sudoku_link {
   float: right;
   height: 3em;
   margin-top: .2em;
 }
 
-.sudoku_label{
+.sudoku_label {
   display: inline-block;
   font-size: .9em;
   margin-top: 0;
@@ -135,6 +141,32 @@ tr:nth-child(-3n+6){
   padding: 0;
   text-align: center;
   width: 1.4em;
+}
+
+.box_wrapper_load {
+  background-color: skyblue;
+  border: dimgrey solid 1px;
+  font-size: 2.5em;
+  font-weight: 700;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 1.4em;
+  color: black;
+}
+
+.box_wrapper_load::-webkit-input-placeholder {
+  background-color: skyblue;
+  border: dimgrey solid 1px;
+  font-size: 1em;
+  font-weight: 700;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 1.4em;
+  color: black;
 }
 
 .footer_wrapper {
@@ -189,6 +221,13 @@ tr:nth-child(-3n+6){
   font-size: 1em;
   text-indent: 1em;
 }
+.info_example {
+  display: none;
+}
+.button_wrapper {
+  width: 27em;
+  text-align: center;
+}
 
 .solve_button{
   border-top: #999999 4px solid;
@@ -201,8 +240,8 @@ tr:nth-child(-3n+6){
   color: white;
   font-weight: bold;
   height: 2.5em;
-  margin-left: 5.5em;
-  width: 5em;
+  margin-right: 1em;
+  width: 6em;
 }
 
 .reset_button{
@@ -217,6 +256,45 @@ tr:nth-child(-3n+6){
   margin-left: 5.5em;
   height: 2.5em;
   width: 5em;
+}
+
+.load_example1_button{
+  background-color: slategrey;
+  border-top: lightgrey 4px solid;
+  border-left: lightgrey 4px solid;
+  border-right: #222222 4px solid;
+  border-bottom: #222222 4px solid;
+  color: white;
+  font-weight: bolder;
+  margin-left: .5em;
+  height: 2.5em;
+  width: auto;
+}
+
+.load_example2_button{
+  background-color: slategrey;
+  border-top: lightgrey 4px solid;
+  border-left: lightgrey 4px solid;
+  border-right: #222222 4px solid;
+  border-bottom: #222222 4px solid;
+  color: white;
+  font-weight: bolder;
+  margin-left: .5em;
+  height: 2.5em;
+  width: auto;
+}
+
+.load_example3_button{
+  background-color: slategrey;
+  border-top: lightgrey 4px solid;
+  border-left: lightgrey 4px solid;
+  border-right: #222222 4px solid;
+  border-bottom: #222222 4px solid;
+  color: white;
+  font-weight: bolder;
+  margin-left: .5em;
+  height: 2.5em;
+  width: auto;
 }
 
 .puzzle_error{
@@ -245,7 +323,7 @@ tr:nth-child(-3n+6){
 @media screen and (max-width: 1280px) and (min-width: 1153px) {
 
   .body_area{
-    height: auto;
+    height: 31.2em;
   }
 
   .header_GraphicsRight{
@@ -291,7 +369,7 @@ tr:nth-child(-3n+6){
   .solve_button{
     font-size: 20pt;
     height: 3em;
-    margin-left: 7em;
+    /*margin-left: 7em;*/
     margin-top: 1em;
     padding: 0;
     width: 6em;
@@ -418,6 +496,9 @@ and (max-device-width : 480px) {
     .body_area{
       height: 95em;
       width: 100%;
+    }
+    .button_wrapper {
+      width: 39em;
     }
 
     .main_Title{
