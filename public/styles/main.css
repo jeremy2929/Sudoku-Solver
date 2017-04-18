@@ -7,9 +7,6 @@ a{
 }
 
 body{
-  /*background-image: url("/styles/images.jpg");*/
-  /*background-image: url("/styles/desk1.jpg");*/
-
   font-family: helvetica;
   margin: 0;
 }
@@ -173,9 +170,12 @@ tr:nth-child(-3n+6) {
 }
 
 .footer_wrapper {
+  background: white;
   margin: 0;
   height: 6.1em;
   width: 100%;
+  bottom: 0;
+  position: fixed;;
 }
 
 .our_name{
@@ -487,6 +487,11 @@ and (max-device-width : 800px) {
 @media only screen
 and (min-device-width : 320px)
 and (max-device-width : 480px) {
+    ul {
+      padding: 0;
+      margin-bottom: 1em;
+      margin-left: 1em;
+    }
 
     .body_area{
       height: 95em;
@@ -560,7 +565,7 @@ and (max-device-width : 480px) {
       font-size: 1em;
       margin: 0;
       margin-bottom: 2em;
-      text-align: center;
+      /*text-align: center;*/
     }
 
   }
