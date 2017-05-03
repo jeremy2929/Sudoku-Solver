@@ -408,6 +408,7 @@ tr:nth-child(-3n+6) {
   .box_wrapper {
     font-size: 2.8em;
   }
+}
 
 @media only screen
 and (min-device-width : 481px)
@@ -492,89 +493,89 @@ and (max-device-width : 800px) {
 @media only screen
 and (min-device-width : 320px)
 and (max-device-width : 480px) {
-    ul {
-      padding: 0;
-      margin-bottom: 1em;
-      margin-left: 1em;
-    }
-
-    .body_area {
-      height: 95em;
-      width: 100%;
-    }
-
-    .button_wrapper {
-      width: 39em;
-    }
-
-    .main_Title {
-      font-size: 3em;
-      margin-left: 2em;
-    }
-
-    .sudoku_link {
-      float: right;
-      height: 3em;
-      margin-top: .2em;
-      margin-right: .2em;
-      width: 6em;
-    }
-
-    .fa-github {
-      color: darkgrey;
-      float: right;
-      margin-right: 1em;
-      transition: color 0.8s ease;
-    }
-
-    .sudoku_label {
-      font-size: 1.5em;
-      margin-right: 1em;
-      margin-top: 0;
-    }
-
-    .user_box {
-      font-size: 1.3em;
-      margin-top: 2em;
-    }
-
-    .solve_button {
-      margin-top: 1em;
-    }
-
-    .reset_button {
-      margin-top: 1em;
-    }
-
-    .grid_wrapper {
-      margin-top: 1em;
-      margin-left: .5em;
-    }
-
-    .box_wrapper {
-      font-size: 4.7em;
-    }
-
-    .box_wrapper_load {
-      font-size: 4.7em;
-    }
-
-    .our_name {
-      color: magenta;
-      font-size: 1.8em;
-    }
-
-    .footer_text{
-      display: inline-block;
-      font-size: 1.3em;
-      margin: 0;
-      white-space: pre;
-    }
-
-    .copyright_text{
-      font-size: 1em;
-      margin: 0;
-      margin-bottom: 2em;
-    }
-
+  
+  ul {
+    padding: 0;
+    margin-bottom: 1em;
+    margin-left: 1em;
   }
+
+  .body_area {
+    height: 95em;
+    width: 100%;
+  }
+
+  .button_wrapper {
+    width: 39em;
+  }
+
+  .main_Title {
+    font-size: 3em;
+    margin-left: 2em;
+  }
+
+  .sudoku_link {
+    float: right;
+    height: 3em;
+    margin-top: .2em;
+    margin-right: .2em;
+    width: 6em;
+  }
+
+  .fa-github {
+    color: darkgrey;
+    float: right;
+    margin-right: 1em;
+    transition: color 0.8s ease;
+  }
+
+  .sudoku_label {
+    font-size: 1.5em;
+    margin-right: 1em;
+    margin-top: 0;
+  }
+
+  .user_box {
+    font-size: 1.3em;
+    margin-top: 2em;
+  }
+
+  .solve_button {
+    margin-top: 1em;
+  }
+
+  .reset_button {
+    margin-top: 1em;
+  }
+
+  .grid_wrapper {
+    margin-top: 1em;
+    margin-left: .5em;
+  }
+
+  .box_wrapper {
+    font-size: 4.7em;
+  }
+
+  .box_wrapper_load {
+    font-size: 4.7em;
+  }
+
+  .our_name {
+    color: magenta;
+    font-size: 1.8em;
+  }
+
+  .footer_text{
+    display: inline-block;
+    font-size: 1.3em;
+    margin: 0;
+    white-space: pre;
+  }
+
+  .copyright_text{
+    font-size: 1em;
+    margin: 0;
+    margin-bottom: 2em;
+  }
+}

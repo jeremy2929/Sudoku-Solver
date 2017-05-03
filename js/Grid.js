@@ -107,7 +107,7 @@ export default React.createClass({
           for (var tryValue = valueStart; tryValue < 10; tryValue++) {
             // counting how many times a value will be tested in a box
             counterValue++
-            // setting flag to back up- will change to false a solution is found for box
+            // setting flag to back up- will change to false if a solution is found for box
             var backupFlag = true
             // validate only trying squares that are empty
             if(this.state.boxValueOriginal[boxRow][boxColumn] === undefined) {
@@ -207,37 +207,38 @@ export default React.createClass({
     this.setState(this.state.boxValue)
   },
   render() {
-return (
-  <div className="body_area">
-    <User counterValue={this.state.counterValue}
-          onSolveClick={this.onSolveClick}
-          onResetClick={this.onResetClick}
-          onLoadExample1Click={this.onLoadExample1Click}
-          onLoadExample2Click={this.onLoadExample2Click}
-          onLoadExample3Click={this.onLoadExample3Click}
-          puzzleMessage={this.state.puzzleMessage}
-          puzzleMessageDisplay={this.state.puzzleMessageDisplay}/>
-    <section className="grid_wrapper">
-      <table >
-        <tbody>
-          {
-            this.state.boxValue.map((rows, i)=> {
-              return (
-                <tr key={i}>
-                  {
-                    rows.map((cols, j)=>{
-                      return (
-                        <td key={j}><Box i={i} j={j} updateBoard={this.updateBoard} boxValue={this.state.boxValue} boxValueOriginal={this.state.boxValueOriginal}/></td>
-                      )
-                    })
-                  }
-                </tr>
-              )
-            })
-          }
-        </tbody>
-      </table>
-    </section>
-  </div>
-  )}
+    return (
+      <div className="body_area">
+        <User counterValue={this.state.counterValue}
+              onSolveClick={this.onSolveClick}
+              onResetClick={this.onResetClick}
+              onLoadExample1Click={this.onLoadExample1Click}
+              onLoadExample2Click={this.onLoadExample2Click}
+              onLoadExample3Click={this.onLoadExample3Click}
+              puzzleMessage={this.state.puzzleMessage}
+              puzzleMessageDisplay={this.state.puzzleMessageDisplay}/>
+        <section className="grid_wrapper">
+          <table >
+            <tbody>
+              {
+                this.state.boxValue.map((rows, i)=> {
+                  return (
+                    <tr key={i}>
+                      {
+                        rows.map((cols, j)=>{
+                          return (
+                            <td key={j}><Box i={i} j={j} updateBoard={this.updateBoard} boxValue={this.state.boxValue} boxValueOriginal={this.state.boxValueOriginal}/></td>
+                          )
+                        })
+                      }
+                    </tr>
+                  )
+                })
+              }
+            </tbody>
+          </table>
+        </section>
+      </div>
+    )
+  }
 })
