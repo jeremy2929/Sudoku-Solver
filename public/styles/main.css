@@ -135,7 +135,7 @@ tr:nth-child(-3n+6) {
   -moz-appearance: textfield;
   background-color: white;
   color: black;
-  border: dimgrey solid 1px;
+  border: black solid 2px;
   font-size: 2.5em;
   font-weight: 700;
   height: auto;
@@ -148,7 +148,7 @@ tr:nth-child(-3n+6) {
 .box_wrapper_load {
   -moz-appearance: textfield;
   background-color: skyblue;
-  border: dimgrey solid 1px;
+  border: black solid 2px;
   font-size: 2.5em;
   font-weight: 700;
   height: auto;
@@ -161,7 +161,6 @@ tr:nth-child(-3n+6) {
 
 .box_wrapper_load::-webkit-input-placeholder {
   background-color: skyblue;
-  border: dimgrey solid 1px;
   font-size: 1em;
   font-weight: 700;
   height: auto;
