@@ -28,7 +28,8 @@ export default React.createClass({
     this.refs.examples.className = "hidden"
   },
   onExampleCLick(e) {
-    this.refs.examples.className = "modal"
+    // button to display 3 buttons for loading 3 different example puzzles
+    this.refs.examples.className = "modal_examples"
     this.refs.infoText.className = "hidden"
   },
   render() {
@@ -46,7 +47,7 @@ export default React.createClass({
           puzzleMessage={this.props.puzzleMessage}/>}
           <div ref="examples" className="hidden">
             <div className="button_wrapper">
-              <p className="">Click on one of the following example puzzeles to insert numbers and then click solve.</p>
+              <p className="">Click on one of the following example puzzles to insert numbers and then click solve.</p>
               <button
                 className="solve_button"
                 onClick={this.onLoadExample1Click}>Easy</button>

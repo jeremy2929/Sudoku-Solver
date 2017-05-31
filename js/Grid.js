@@ -3,6 +3,7 @@ import Box from "./Box"
 import {userValuesTest} from './UserTest'
 import {backup} from './Backup'
 import * as Tests from './Tests'
+import * as Examples from './Puzzle_Examples'
 import User from "./Buttons"
 
 // counterValue counts how many times a value is tried in a box
@@ -106,7 +107,7 @@ export default React.createClass({
           for (var tryValue = valueStart; tryValue < 10; tryValue++) {
             // counting how many times a value will be tested in a box
             counterValue++
-            // setting flag to back up- will change to false a solution is found for box
+            // setting flag to back up- will change to false if a solution is found for box
             var backupFlag = true
             // validate only trying squares that are empty
             if(this.state.boxValueOriginal[boxRow][boxColumn] === undefined) {
@@ -179,59 +180,65 @@ export default React.createClass({
       this.state.puzzleMessageDisplay = true
       this.state.puzzleMessage = "PUZZLE ENTERED HAS ERRORS"
     }
-    this.setState(this.state.boxValue)
   },
   onResetClick() {
     // reset all boxes by reloading app
     window.location.reload()
   },
   onLoadExample1Click() {
-   this.state.boxValueOriginal = [[,,,"21","61",,"72",,"12"],["60","80",,,"71",,,"92",],["10","90",,,,"41","52",,],["83","23",,"14",,,,"45",],[,,"43","64",,"24","95",,],[,"53",,,,"34",,"25","85"],[,,"96","37",,,,"78","48"],[,"46",,,"57",,,"38","68"],["76",,"36",,"17","87",,,]],
-   this.state.boxValue = [[" "," "," ","21","61"," ","72"," ","12"],["60","80"," "," ","71"," "," ","92"," "],["10","90"," "," "," ","41","52"," "," "],["83","23"," ","14"," "," "," ","45"," "],[" "," ","43","64"," ","24","95"," "," "],[" ","53"," "," "," ","34"," ","25","85"],[" "," ","96","37"," "," "," ","78","48"],[" ","46"," "," ","57"," "," ","38","68"],["76"," ","36"," ","17","87"," "," "," "]],
-   this.setState(this.state.boxValue)
+    // loading puzzle example 1 from external module Puzzle_examples
+    var Example = Examples.LoadExample1Click(this.state.boxValue,this.state.boxValueOriginal)
+    this.state.boxValueOriginal = Example.boxValueOriginal
+    this.state.boxValue = Example.boxValue
+    this.setState(this.state.boxValue)
   },
   onLoadExample2Click() {
-    this.state.boxValueOriginal = [[,"20",,"61",,"81",,,],["50","80",,,,"91","72",,],[,,,,"41",,,,],["33","73",,,,,"55",,],["63",,,,,,,,"45"],[,,"83",,,,,"15","35"],[,,,,"27",,,,],[,,"96","87",,,,"38","68"],[,,,"37",,"67",,"98",]]
-    this.state.boxValue = [[" ","20"," ","61"," ","81"," "," "," "],["50","80"," "," "," ","91","72"," "," "],[" "," "," "," ","41"," "," "," "," "],["33","73"," "," "," "," ","55"," "," "],["63"," "," "," "," "," "," "," ","45"],[" "," ","83"," "," "," "," ","15","35"],[" "," "," "," ","27"," "," "," "," "],[" "," ","96","87"," "," "," ","38","68"],[" "," "," ","37"," ","67"," ","98"," "]]
+    // loading puzzle example 2 from external module Puzzle_examples
+    var Example = Examples.LoadExample2Click(this.state.boxValue,this.state.boxValueOriginal)
+    this.state.boxValueOriginal = Example.boxValueOriginal
+    this.state.boxValue = Example.boxValue
     this.setState(this.state.boxValue)
   },
   onLoadExample3Click() {
-    this.state.boxValueOriginal = [[,,,"61",,,"42",,],["70",,,,,"31","62",,],[,,,,"91","11",,"82",],[,,,,,,,,],[,"53",,"14","84",,,,"35"],[,,,"34",,"64",,"45","55"],[,"46",,"27",,,,"68",],["96",,"36",,,,,,],[,"26",,,,,"18",,]],
-    this.state.boxValue = [[" "," "," ","61"," "," ","42"," "," "],["70"," "," "," "," ","31","62"," "," "],[" "," "," "," ","91","11"," ","82"," "],[" "," "," "," "," "," "," "," "," "],[" ","53"," ","14","84"," "," "," ","35"],[" "," "," ","34"," ","64"," ","45","55"],[" ","46"," ","27"," "," "," ","68"," "],["96"," ","36"," "," "," "," "," "," "],[" ","26"," "," "," "," ","18"," "," "]],
+    // loading puzzle example 3 from external module Puzzle_examples
+    var Example = Examples.LoadExample3Click(this.state.boxValue,this.state.boxValueOriginal)
+    this.state.boxValueOriginal = Example.boxValueOriginal
+    this.state.boxValue = Example.boxValue
     this.setState(this.state.boxValue)
   },
   render() {
-return (
-  <div className="body_area">
-    <User counterValue={this.state.counterValue}
-          onSolveClick={this.onSolveClick}
-          onResetClick={this.onResetClick}
-          onLoadExample1Click={this.onLoadExample1Click}
-          onLoadExample2Click={this.onLoadExample2Click}
-          onLoadExample3Click={this.onLoadExample3Click}
-          puzzleMessage={this.state.puzzleMessage}
-          puzzleMessageDisplay={this.state.puzzleMessageDisplay}/>
-    <section className="grid_wrapper">
-      <table >
-        <tbody>
-          {
-            this.state.boxValue.map((rows, i)=> {
-              return (
-                <tr key={i}>
-                  {
-                    rows.map((cols, j)=>{
-                      return (
-                        <td key={j}><Box i={i} j={j} updateBoard={this.updateBoard} boxValue={this.state.boxValue} boxValueOriginal={this.state.boxValueOriginal}/></td>
-                      )
-                    })
-                  }
-                </tr>
-              )
-            })
-          }
-        </tbody>
-      </table>
-    </section>
-  </div>
-  )}
+    return (
+      <div className="body_area">
+        <User counterValue={this.state.counterValue}
+              onSolveClick={this.onSolveClick}
+              onResetClick={this.onResetClick}
+              onLoadExample1Click={this.onLoadExample1Click}
+              onLoadExample2Click={this.onLoadExample2Click}
+              onLoadExample3Click={this.onLoadExample3Click}
+              puzzleMessage={this.state.puzzleMessage}
+              puzzleMessageDisplay={this.state.puzzleMessageDisplay}/>
+        <section className="grid_wrapper">
+          <table >
+            <tbody>
+              {
+                this.state.boxValue.map((rows, i)=> {
+                  return (
+                    <tr key={i}>
+                      {
+                        rows.map((cols, j)=>{
+                          return (
+                            <td key={j}><Box i={i} j={j} updateBoard={this.updateBoard} boxValue={this.state.boxValue} boxValueOriginal={this.state.boxValueOriginal}/></td>
+                          )
+                        })
+                      }
+                    </tr>
+                  )
+                })
+              }
+            </tbody>
+          </table>
+        </section>
+      </div>
+    )
+  }
 })

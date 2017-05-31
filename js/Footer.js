@@ -24,7 +24,7 @@ export default React.createClass({
               <p className="copyright_text">Copyright Sudoku Puzzle Solver 2017</p>
             </li>
           </ul>
-          <img className="header_GraphicsRight"src="/styles/assets/footer_pattern.png"></img>
+          <img className="header_graphics_right"src="/styles/assets/footer_pattern.png"></img>
         </section>
       </footer>
     )
